@@ -157,8 +157,8 @@ for (i in 1:length(allLogFiles)) {
     Id2<-c("NA",as.character(dt$tag))
     Id2<-Id2[-length(Id2)] #suppression de la derni?re valeur pour garder la m?me longueur
     #on decalle tous les temps d'un cran
-    dt$time<-times(as.character(dt$hour))
-    time2<-c(times(0),dt$time)
+    dt$time<-chron::times(as.character(dt$hour))
+    time2<-c(chron::times(0),dt$time)
     time2<-time2[-length(time2)] #suppression de la derni??re valeur pour garder la m?me longueur
     #suppression des donnees si RFID identique la ligne precedente ET la difference de temps est inferieure au seuil
     samevisit=(dt$tag==Id2|dt$tag=='??????????'|Id2=='??????????') & (dt$time-time2)*86400<gap
