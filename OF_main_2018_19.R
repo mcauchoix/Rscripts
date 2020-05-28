@@ -54,12 +54,13 @@ setwd("/Users/maximecauchoix/Documents/wild_cog_OF/Rscripts/")
 # To compute learning curve
 source('slideFunct.R')
 source('OF_mergeLogFiles.R')
+source('OF_summarise_banding_2018_19.R')
 #files
 #---------
 path='/Users/maximecauchoix/Documents/wild_cog_OF/'
 
 # OUT
-pathD='~/Dropbox/wild_cog_OF/data/2018-2019/'
+pathD='~/Documents/wild_cog_OF/data/2018-2019/'
 out_f=paste0(path,'results/2018-2019/')
 out_lc=paste0(out_f,'learning-curves/')
 out_ls=paste0(out_f,'learning-stats/')
@@ -132,7 +133,7 @@ d$OFnb=factor(d$OFnb)
 # 4- banding summary
 #--------------------
 #source('~/IAST Dropbox/maxime cauchoix/wild_cog_OF/Rscripts/OF_summarise_banding_2018_19.R')
-source('~/Dropbox/wild_cog_OF/Rscripts/band_clean_2018_19.R')
+source('~/Documents/wild_cog_OF/Rscripts/band_clean_2018_19.R')
 # nb ind by year
 b$capt="Adult Nest"
 b$capt[is.na(b$Nest.Number)]='Adult Missnet'
@@ -141,13 +142,12 @@ b$capt[b$Age=='PUL']='PUL'
 #b$capt[!b$Species %in% c("Blue","Great")]=NA
 table(b$Year,b$capt)
 
-source('~/Dropbox/wild_cog_OF/Rscripts/OF_summarise_banding.R')
 
 # to correct error for Marine
 #ball=OF_summarise_banding(unique(b$RFID.[b$TagLength==10&!is.na(b$RFID.)]),b,'Tagged bird')
 
-
-ball=OF_summarise_banding(intersect(unique(d$tag),unique(b$RFID.)),b,'Recorded at OF')
+source('OF_summarise_banding.R')
+ball=OF_summarise_banding(intersect(unique(d$tag),unique(b$RFID.)),b)
 print(paste("Nb bird that should have fitness data:",sum(ball$nest!="NA")))
 print(paste("Nb GT that should have fitness data:",sum(ball$nest!="NA"&ball$species=="Great")))
 print(paste("Nb BT that should have fitness data:",sum(ball$nest!="NA"&ball$species=="Blue")))
