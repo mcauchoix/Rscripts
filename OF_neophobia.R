@@ -36,7 +36,7 @@ ec$dayDate=as.Date(ec$Day,"%d/%m/%y")# convert date
 # Preprocess data
 #---------------------------------
 
-# subsample
+# subsample keep only openbar and habituation scenario
 #----------
 data=d[d$scenario %in% c(1,2),]
 ##
@@ -61,15 +61,16 @@ dataSun$timeSet=(dataSun$hourSunset-chron::times(as.character(dataSun$hour)))*86
 # neophobia variable
 #-------------------
 d$neo[d$ini.perc.door.open==75]=1
-d$neo[d$green==100]=2
-d$neo[d$red==100]=3
+d$neo[d$ini.perc.door.open==100]=2
+d$neo[d$green==100]=3
+d$neo[d$red==100]=4
 
 # Get neo event onset
 #--------------------
 # loop over site
 uSite=c("C1","C4","M1","BA")#unique(d$site_folder)#remove gajan for now
 
-site=c();neo1=c();neo2=c();neo3=c();
+site=c();neo1=c();neo2=c();neo3=c();neo4=c();
 #time of change by site
 datlist=list()
 for (s in 1:length(uSite))
@@ -85,9 +86,8 @@ for (s in 1:length(uSite))
   sun=sunrise.set(42.986462, 1.144040, ec$day[ind], timezone = "UTC+1", num.days = 1)
   neo1SunRise_arr=(chron::times(as.character(ec$Hour.start[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
   
-  
-  #  neo2 green
-  ind=which(ec$change=="S2 green"&ec$Location==uSite[s])
+  #  neo2 100%
+  ind=which(ec$change=="S2 0%"&ec$Location==uSite[s])
   neo2=strptime(paste(ec$day[ind],ec$Hour.end[ind]),"%Y-%m-%d %H:%M:%S")
   sun=sunrise.set(42.986462, 1.144040, ec$day[ind], timezone = "UTC+1", num.days = 1)
   neo2SunRise=(chron::times(as.character(ec$Hour.end[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
@@ -97,8 +97,9 @@ for (s in 1:length(uSite))
   neo2SunRise_arr=(chron::times(as.character(ec$Hour.start[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
   
   
-   #  neo3 red
-  ind=which(ec$change=="S2 red"&ec$Location==uSite[s])
+  
+  #  neo3 green
+  ind=which(ec$change=="S2 green"&ec$Location==uSite[s])
   neo3=strptime(paste(ec$day[ind],ec$Hour.end[ind]),"%Y-%m-%d %H:%M:%S")
   sun=sunrise.set(42.986462, 1.144040, ec$day[ind], timezone = "UTC+1", num.days = 1)
   neo3SunRise=(chron::times(as.character(ec$Hour.end[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
@@ -108,19 +109,39 @@ for (s in 1:length(uSite))
   neo3SunRise_arr=(chron::times(as.character(ec$Hour.start[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
   
   
+   #  neo4 red
+  ind=which(ec$change=="S2 red"&ec$Location==uSite[s])
+  neo4=strptime(paste(ec$day[ind],ec$Hour.end[ind]),"%Y-%m-%d %H:%M:%S")
+  sun=sunrise.set(42.986462, 1.144040, ec$day[ind], timezone = "UTC+1", num.days = 1)
+  neo4SunRise=(chron::times(as.character(ec$Hour.end[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
+  # arrival expe
+  neo4_arr=strptime(paste(ec$day[ind],ec$Hour.start[ind]),"%Y-%m-%d %H:%M:%S")
+  sun=sunrise.set(42.986462, 1.144040, ec$day[ind], timezone = "UTC+1", num.days = 1)
+  neo4SunRise_arr=(chron::times(as.character(ec$Hour.start[ind]))-format(sun$sunrise,'%H:%M:%S'))*86400
+  # End neo4
+  ind=which(ec$change=="S3 all 25% 5s"&ec$Location==uSite[s])
+  End4=strptime(paste(ec$day[ind],ec$Hour.start[ind]),"%Y-%m-%d %H:%M:%S")
+  
   # store
-  dat=data.frame(site=site,neo1=neo1,neo2=neo2,neo3=neo3,neo1SunRise=neo1SunRise,neo2SunRise=neo2SunRise,neo3SunRise=neo3SunRise,
-                 neo1_arr=neo1_arr,neo2_arr=neo2_arr,neo3_arr=neo3_arr,
-                 neo1SunRise_arr=neo1SunRise_arr,neo2SunRise_arr=neo2SunRise_arr,neo3SunRise_arr=neo3SunRise_arr)
+  dat=data.frame(site=site,neo1=neo1,neo2=neo2,neo3=neo3,neo4=neo4,neo1SunRise=neo1SunRise,neo2SunRise=neo2SunRise,neo3SunRise=neo3SunRise,neo4SunRise=neo4SunRise,
+                 neo1_arr=neo1_arr,neo2_arr=neo2_arr,neo3_arr=neo3_arr,neo4_arr=neo4_arr,
+                 neo1SunRise_arr=neo1SunRise_arr,neo2SunRise_arr=neo2SunRise_arr,neo3SunRise_arr=neo3SunRise_arr,neo4SunRise_arr=neo4SunRise_arr,End4=End4)
   datlist[[s]]=dat
 }
 #merge
 neo=do.call(rbind,datlist)
 
+# duration of each step
+neo$motor1_duration=neo$neo2_arr-neo$neo1
+neo$motor2_duration=neo$neo3_arr-neo$neo2
+neo$visual1_duration=neo$neo4_arr-neo$neo3
+neo$visual2_duration=neo$End4-neo$neo4
+
 # verify
-neo$neo1-neo$neo1_arr
-neo$neo2-neo$neo2_arr
-neo$neo3-neo$neo3_arr
+# neo$neo1-neo$neo1_arr
+# neo$neo2-neo$neo2_arr
+# neo$neo3-neo$neo3_arr
+# neo$neo4-neo$neo4_arr
 
 # compute ITI by individuals
 #---------------------------
