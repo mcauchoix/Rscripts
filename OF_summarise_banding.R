@@ -1,12 +1,11 @@
-# summarise banding "b" by unique pitTag "Utag" save banding issue in
-#"/Users/maximecauchoix/IAST Dropbox/maxime cauchoix/wild_cog_OF/banding/" with "out_name"
+# summarise banding "b" by unique pitTag "Utag" save banding issue in working directory
 # 
 # mcauchoixxx@gmail.com, 12/12/17
 #------------------------------------
 # to do
 #  for bird capture on nest add a variable with nest number and year
 #-------
-OF_summarise_banding<-function(Utag,b,out_name){
+OF_summarise_banding<-function(Utag,b){
 
 # libraries
 #-----------
@@ -44,7 +43,7 @@ names(bu)='tag'
 
 # Open error file
 #----------------
-sink(paste(out,out_name,"banding_errors.txt"))# store erros
+sink(paste("banding_errors.txt"))# store erros
 #---------------------------------------------------------------------
 # add rest of banding variables of interest
 #---------------------------------------------------------------------
@@ -226,6 +225,6 @@ names(br)=c('bandNumber','nbCapt')
 #ball <- merge(bu,br,by="bandNumber", all.x=T)
 # Save
 #-----
-write.table(bu,paste(out,out_name,'summary_tag_banding.csv',sep=""),sep=";",row.names = F)
+write.table(bu,paste('summary_tag_banding.csv',sep=""),sep=";",row.names = F)
 return(bu)
 }
