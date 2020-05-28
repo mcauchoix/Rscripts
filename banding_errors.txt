@@ -1,0 +1,1841 @@
+[1] "--------------------------"
+[1] "011016E0BA: several AGE for same tag ind:55"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+228     8425564        8425  564 011016E0BA
+309     8425564        8425  564 011016E0BA
+1609    8425564        8425  564 011016E0BA
+     Color Species Recapture Site Nest.Number
+228   TVMB    Blue Recapture   C1        <NA>
+309   TVMB    Blue Recapture   C1        <NA>
+1609  TVMB    Blue  New Bird   C1        C006
+     Bander  Sex Age Wing.chord Tarsus   Head
+228      MB <NA> +1a       <NA>   <NA>   <NA>
+309      MB <NA> +1a      65.00  18.20  24.30
+1609     LL    F  1a      63.00 17\t90 24\t70
+      Fat Weight       Feathers Blood Photo
+228  <NA>   <NA>           None  <NA>  <NA>
+309     0  10.60           None   Yes   Yes
+1609    0  10.80 Tail and color   Yes   Yes
+     Injury Notes InjuredLeg TypeOfInjury
+228    None  None       None         <NA>
+309    None  <NA>       None         None
+1609   None  <NA>       <NA>         <NA>
+         Date     Time Year Personality Tail
+228  22/11/18 13:06:42 2018        <NA> <NA>
+309  16/11/18 12:04:28 2018        <NA> <NA>
+1609 18/05/18 09:00:13 2018        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+228   Recapture    FALSE             NA
+309   Recapture     TRUE             65
+1609   New Bird     TRUE             63
+     Head.num Tarsus.num bloodCorrect
+228        NA         NA           No
+309      24.3       18.2          Yes
+1609       NA         NA          Yes
+     TagLength environement dateLength
+228         10          low          8
+309         10          low          8
+1609        10          low          8
+     dateCorrected
+228     2018-11-22
+309     2018-11-16
+1609    2018-05-18
+[1] "--------------------------"
+[1] "0110173435: several AGE for same tag ind:59"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+429     8214771        8214  771 0110173435
+656     8214771        8214  771 0110173435
+668     8214771        8214  771 0110173435
+675     8214771        8214  771 0110173435
+1352    8214771        8214  771 0110173435
+     Color Species Recapture Site Nest.Number
+429   TWVM    Blue Recapture   C1        <NA>
+656   TWVM    Blue Recapture   C1        <NA>
+668   TWVM    Blue Recapture   C1        <NA>
+675   TWVM    Blue Recapture   C1        <NA>
+1352  TWVM    Blue Recapture   C1        C012
+     Bander  Sex Age Wing.chord Tarsus  Head
+429      MB <NA> +1a       <NA>   <NA>  <NA>
+656      MB <NA> +1a       <NA>   <NA>  <NA>
+668      MB <NA> +1a       <NA>   <NA>  <NA>
+675      MB <NA> +1a      69.00  19.50 24.70
+1352     LL    M  1a      66.00  19.20 24.20
+      Fat Weight Feathers Blood Photo Injury
+429  <NA>   <NA>     None  <NA>  <NA>   None
+656  <NA>   <NA>     <NA>  <NA>  <NA>   None
+668  <NA>   <NA>     <NA>  <NA>  <NA>   None
+675     0  11.57     None   Yes   Yes   None
+1352    0  10.40     None  <NA>  <NA>   None
+                Notes InjuredLeg TypeOfInjury
+429              <NA>       None         None
+656              <NA>       <NA>         <NA>
+668              <NA>       <NA>         <NA>
+675  Pit tag removed        <NA>         None
+1352             <NA>       <NA>         <NA>
+         Date     Time Year Personality Tail
+429  07/11/18 11:04:45 2018        <NA> <NA>
+656  08/10/18 13:35:13 2018        <NA> <NA>
+668  05/10/18 11:20:49 2018        <NA> <NA>
+675  04/10/18 14:50:48 2018        <NA> <NA>
+1352 22/05/18 09:22:57 2018        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+429   Recapture    FALSE             NA
+656   Recapture     TRUE             NA
+668   Recapture     TRUE             NA
+675   Recapture     TRUE             69
+1352  Recapture     TRUE             66
+     Head.num Tarsus.num bloodCorrect
+429        NA         NA           No
+656        NA         NA           No
+668        NA         NA           No
+675      24.7       19.5          Yes
+1352     24.2       19.2           No
+     TagLength environement dateLength
+429         10          low          8
+656         10          low          8
+668         10          low          8
+675         10          low          8
+1352        10          low          8
+     dateCorrected
+429     2018-11-07
+656     2018-10-08
+668     2018-10-05
+675     2018-10-04
+1352    2018-05-22
+[1] "--------------------------"
+[1] "01101746CD: several AGE for same tag ind:69"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+669     8239881        8239  881 01101746CD
+2614    8239881        8239  881 01101746CD
+     Color Species Recapture Site Nest.Number
+669   TGAM   Great Recapture   C1        <NA>
+2614  TGAM   Great  New Bird   C1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+669      MB   M +1a      79.00  22.30 30.50
+2614    CMS   M  1a         75   22.2  30.8
+     Fat Weight Feathers Blood Photo Injury
+669    0  17.30     None   Yes   Yes   None
+2614   0   17.5     None   Yes  <NA>   None
+     Notes InjuredLeg TypeOfInjury     Date
+669   <NA>       <NA>         None 05/10/18
+2614  <NA>       None         None 31/10/17
+         Time Year Personality Tail Recapture2
+669  11:00:38 2018        <NA> <NA>  Recapture
+2614 10:17:23 2017        <NA> <NA>   New Bird
+     duplicat Wing.chord.num Head.num
+669     FALSE             79     30.5
+2614     TRUE             75     30.8
+     Tarsus.num bloodCorrect TagLength
+669        22.3          Yes        10
+2614       22.2          Yes        10
+     environement dateLength dateCorrected
+669           low          8    2018-10-05
+2614          low          8    2017-10-31
+[1] "--------------------------"
+[1] "011016CFBE: several AGE for same tag ind:79"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+574     8239880        8239  880 011016CFBE
+644     8239880        8239  880 011016CFBE
+688     8239880        8239  880 011016CFBE
+2613    8239880        8239  880 011016CFBE
+     Color Species Recapture Site Nest.Number
+574   TVBM    Blue Recapture   C1        <NA>
+644   TVBM    Blue Recapture   C1        <NA>
+688   TVBM    Blue Recapture   C1        <NA>
+2613  TVBM    Blue  New Bird   C1        <NA>
+     Bander  Sex Age Wing.chord Tarsus  Head
+574      MB <NA> +1a       <NA>   <NA>  <NA>
+644      MB <NA> +1a      66.00  19.50 24.50
+688      MB <NA> +1a      66.00  19.80 24.50
+2613     MC <NA>  1a         64  18.93  <NA>
+      Fat Weight Feathers Blood Photo Injury
+574  <NA>   <NA>     None  <NA>  <NA>   None
+644     0  10.50     None   Yes   Yes   None
+688     0  19.59     None   Yes   Yes   None
+2613    1   10.8     <NA>  <NA>  <NA>   None
+     Notes InjuredLeg TypeOfInjury     Date
+574   <NA>       None         None 22/10/18
+644   <NA>       None         None 11/10/18
+688   <NA>       <NA>         <NA> 01/10/18
+2613  <NA>       None         None 31/10/17
+         Time Year Personality Tail Recapture2
+574  11:19:24 2018        <NA> <NA>  Recapture
+644  16:24:56 2018        <NA> <NA>  Recapture
+688  11:14:04 2018        <NA> <NA>  Recapture
+2613 10:15:21 2017        <NA> <NA>   New Bird
+     duplicat Wing.chord.num Head.num
+574     FALSE             NA       NA
+644      TRUE             66     24.5
+688      TRUE             66     24.5
+2613     TRUE             64       NA
+     Tarsus.num bloodCorrect TagLength
+574          NA           No        10
+644       19.50          Yes        10
+688       19.80          Yes        10
+2613      18.93           No        10
+     environement dateLength dateCorrected
+574           low          8    2018-10-22
+644           low          8    2018-10-11
+688           low          8    2018-10-01
+2613          low          8    2017-10-31
+[1] "--------------------------"
+[1] "011016BE94: several AGE for same tag ind:90"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+294     8239873        8239  873 011016BE94
+636     8239873        8239  873 011016BE94
+2606    8239873        8239  873 011016BE94
+     Color Species Recapture Site Nest.Number
+294   TVMN   Great Recapture   C1        <NA>
+636   TVMN   Great Recapture   C1        <NA>
+2606  TVMN   Great  New Bird   C1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+294      MB   M +1a       <NA>   <NA>  <NA>
+636      MB   M +1a      81.00  23.00 30.10
+2606     MC   M  1a         78   22.8  <NA>
+     Fat Weight Feathers Blood
+294    1   <NA>     None  <NA>
+636    0  18.20     None   Yes
+2606   2   18.7     <NA>  <NA>
+                  Photo Injury Notes
+294                <NA>   None  <NA>
+636  Yes without breast   None  <NA>
+2606               <NA>   None  <NA>
+     InjuredLeg TypeOfInjury     Date     Time
+294        None         None 16/11/18 12:22:02
+636        None         None 12/10/18 11:34:32
+2606       None         None 31/10/17 09:14:59
+     Year Personality Tail Recapture2 duplicat
+294  2018        <NA> <NA>  Recapture    FALSE
+636  2018        <NA> <NA>  Recapture     TRUE
+2606 2017        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+294              NA       NA         NA
+636              81     30.1       23.0
+2606             78       NA       22.8
+     bloodCorrect TagLength environement
+294            No        10          low
+636           Yes        10          low
+2606           No        10          low
+     dateLength dateCorrected
+294           8    2018-11-16
+636           8    2018-10-12
+2606          8    2017-10-31
+[1] "--------------------------"
+[1] "01101749AE: several AGE for same tag ind:99"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+206     8239898        8239  898 01101749AE
+505     8239898        8239  898 01101749AE
+2568    8239898        8239  898 01101749AE
+     Color Species Recapture Site Nest.Number
+206   TGOM   Great Recapture   C1        <NA>
+505   TGOM   Great Recapture   C1        <NA>
+2568  TGOM   Great  New Bird   C1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+206      MB   F +1a       <NA>   <NA>  <NA>
+505      MB   F +1a      75.50  21.90 30.60
+2568     CB   F  1a         74   22.2  30.5
+      Fat Weight       Feathers Blood
+206  <NA>   <NA>           None  <NA>
+505     0  15.90           None   Yes
+2568    1     17 Tail and color   Yes
+                  Photo Injury
+206                <NA>   None
+505  Yes without breast   None
+2568                Yes   None
+                        Notes InjuredLeg
+206                      None       None
+505                      <NA>       None
+2568 Tick sous l'oeil gauche        None
+     TypeOfInjury     Date     Time Year
+206          <NA> 22/11/18 12:07:52 2018
+505          None 02/11/18 11:01:09 2018
+2568         None 01/11/17 10:32:14 2017
+     Personality Tail Recapture2 duplicat
+206         <NA> <NA>  Recapture    FALSE
+505         <NA> <NA>  Recapture     TRUE
+2568        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+206              NA       NA         NA
+505            75.5     30.6       21.9
+2568           74.0     30.5       22.2
+     bloodCorrect TagLength environement
+206            No        10          low
+505           Yes        10          low
+2568          Yes        10          low
+     dateLength dateCorrected
+206           8    2018-11-22
+505           8    2018-11-02
+2568          8    2017-11-01
+[1] "--------------------------"
+[1] "030002162C: several AGE for same tag ind:104"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+430     8239884        8239  884 030002162C
+2617    8239884        8239  884 030002162C
+     Color Species Recapture Site Nest.Number
+430   EMTY   Great Recapture   C1        <NA>
+2617  EMTY   Great  New Bird   C1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+430      MB   F +1a      71.50  20.80 29.30
+2617    CMS   F  1a         73   22.3  30.2
+     Fat Weight Feathers Blood Photo Injury
+430    0  17.00     None   Yes   Yes   None
+2617   0   17.4     None   Yes  <NA>   None
+     Notes InjuredLeg TypeOfInjury     Date
+430   <NA>       None         None 07/11/18
+2617  <NA>       None         None 31/10/17
+         Time Year Personality Tail Recapture2
+430  12:16:57 2018        <NA> <NA>  Recapture
+2617 10:28:12 2017        <NA> <NA>   New Bird
+     duplicat Wing.chord.num Head.num
+430     FALSE           71.5     29.3
+2617     TRUE           73.0     30.2
+     Tarsus.num bloodCorrect TagLength
+430        20.8          Yes        10
+2617       22.3          Yes        10
+     environement dateLength dateCorrected
+430           low          8    2018-11-07
+2617          low          8    2017-10-31
+[1] "--------------------------"
+[1] "0300026B7E: several Color combo for same tag ind:131"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+200     7719887        7719  887 0300026B7E
+7430    7719887        7719  887 0300026B7E
+     Color Species Recapture Site Nest.Number
+200   TARM    Blue Recapture   C1        <NA>
+7430  TAPM    Blue      <NA>   C1        <NA>
+     Bander  Sex Age Wing.chord Tarsus  Head
+200      MB <NA> +1a      68.00  19.60 24.20
+7430     MC <NA>  1a      64.00  18.90 24.60
+     Fat Weight Feathers     Blood Photo
+200    2  11.90     None       Yes   Yes
+7430   1  11.40      Yes Small-DNA   Yes
+     Injury Notes InjuredLeg TypeOfInjury
+200    None  None       None         <NA>
+7430   <NA>  <NA>       None         None
+         Date     Time Year Personality Tail
+200  22/11/18 13:15:36 2018        <NA> <NA>
+7430 30/11/15 10:36:16 2015           1 <NA>
+     Recapture2 duplicat Wing.chord.num
+200   Recapture    FALSE             68
+7430   New Bird     TRUE             64
+     Head.num Tarsus.num bloodCorrect
+200      24.2       19.6          Yes
+7430     24.6       18.9          Yes
+     TagLength environement dateLength
+200         10          low          8
+7430        10          low          8
+     dateCorrected
+200     2018-11-22
+7430    2015-11-30
+[1] "--------------------------"
+[1] "0700EE3ED4: several Color combo for same tag ind:136"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+199     6954902        6954  902 0700EE3ED4
+3666    6954902        6954  902 0700EE3ED4
+5219    6954902        6954  902 0700EE3ED4
+5293    6954902        6954  902 0700EE3ED4
+6277    6954902        6954  902 0700EE3ED4
+     Color Species Recapture Site Nest.Number
+199   TCMX    Blue Recapture   C1        <NA>
+3666  TCMY    Blue Recapture Nest        C017
+5219  TCMY    Blue Recapture   C1        <NA>
+5293  TCMY    Blue Recapture   C1        <NA>
+6277  TCMY    Blue Recapture Nest        C017
+     Bander  Sex  Age Wing.chord Tarsus  Head
+199      MB <NA>  +1a       <NA>   <NA>  <NA>
+3666     LL    F  +1a      62.00  18.30 23.90
+5219     AT <NA>  +1a       <NA>   <NA>  <NA>
+5293     LD <NA> <NA>      62.00  19.80 23.90
+6277     AB    F  +1a         64  18.81 23.91
+      Fat Weight       Feathers     Blood
+199  <NA>   <NA>           None      <NA>
+3666    0  10.00 Tail and color Small-DNA
+5219    1  10.60           <NA>      <NA>
+5293    2  10.10            Yes Small-DNA
+6277    1     10           tail Small-DNA
+     Photo     Injury
+199   <NA> Old Injury
+3666   Yes       None
+5219  <NA>       <NA>
+5293   Yes       <NA>
+6277   Yes       <NA>
+                                 Notes
+199  Colour removed : Old colour: TCMY
+3666         Not enough tail feathers 
+5219                              <NA>
+5293                              <NA>
+6277                              <NA>
+     InjuredLeg TypeOfInjury     Date     Time
+199         MCo      AmpFeet 22/11/18 13:08:04
+3666       None         None 15/05/17 16:12:37
+5219       None         None 18/01/17 11:05:18
+5293       None         None 09/01/17 10:00:12
+6277       None         None 20/05/16 12:23:40
+     Year Personality Tail Recapture2 duplicat
+199  2018        <NA> <NA>  Recapture    FALSE
+3666 2017        <NA> <NA>  Recapture     TRUE
+5219 2017        <NA> <NA>  Recapture     TRUE
+5293 2017     Perso02 <NA>  Recapture     TRUE
+6277 2016        <NA> <NA>  Recapture     TRUE
+     Wing.chord.num Head.num Tarsus.num
+199              NA       NA         NA
+3666             62    23.90      18.30
+5219             NA       NA         NA
+5293             62    23.90      19.80
+6277             64    23.91      18.81
+     bloodCorrect TagLength environement
+199            No        10          low
+3666          Yes        10         <NA>
+5219           No        10          low
+5293          Yes        10          low
+6277          Yes        10         <NA>
+     dateLength dateCorrected
+199           8    2018-11-22
+3666          8    2017-05-15
+5219          8    2017-01-18
+5293          8    2017-01-09
+6277          8    2016-05-20
+[1] "--------------------------"
+[1] "0700EE26E1: several Color combo for same tag ind:158"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+3022    8239591        8239  591 0700EE26E1
+3075    8239591        8239  591 0700EE26E1
+     Color Species Recapture Site Nest.Number
+3022  MXTY   Great Recapture   C4        <NA>
+3075  XMTY   Great  New Bird   C4        <NA>
+     Bander Sex Age Wing.chord Tarsus Head
+3022    ASC   M +1a       <NA>   <NA> <NA>
+3075     MC   M +1a         78   22.1 30.4
+      Fat Weight Feathers Blood Photo Injury
+3022 <NA>   <NA>     <NA>  <NA>  <NA>   None
+3075 <NA>   18.3     <NA>  <NA>  <NA>   None
+     Notes InjuredLeg TypeOfInjury     Date
+3022  <NA>       None         None 04/10/17
+3075  <NA>       None         None 28/09/17
+         Time Year Personality Tail Recapture2
+3022 11:06:19 2017        <NA> <NA>  Recapture
+3075 11:03:35 2017        <NA> <NA>   New Bird
+     duplicat Wing.chord.num Head.num
+3022    FALSE             NA       NA
+3075     TRUE             78     30.4
+     Tarsus.num bloodCorrect TagLength
+3022         NA           No        10
+3075       22.1           No        10
+     environement dateLength dateCorrected
+3022         high          8    2017-10-04
+3075         high          8    2017-09-28
+[1] "--------------------------"
+[1] "0700EDAB92: several Color combo for same tag ind:160"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+388     8239578        8239  578 0700EDAB92
+2810    8239578        8239  578 0700EDAB92
+2906    8239578        8239  578 0700EDAB92
+3064    8239578        8239  578 0700EDAB92
+3103    8239578        8239  578 0700EDAB92
+     Color Species Recapture Site Nest.Number
+388   XMTR   Marsh Recapture   C4        <NA>
+2810  PMTR   Marsh Recapture   C4        <NA>
+2906  PMTR   Marsh Recapture   C4        <NA>
+3064  PMTR   Marsh Recapture   C4        <NA>
+3103  PMTR   Marsh  New Bird   C4        <NA>
+     Bander  Sex  Age Wing.chord Tarsus  Head
+388      MB <NA>  +1a      65.00  29.20 26.50
+2810     MC <NA> <NA>       <NA>   <NA>  <NA>
+2906    ASC <NA>  +1a       <NA>   <NA>  <NA>
+3064     MC <NA> <NA>       <NA>   <NA>  <NA>
+3103     MC <NA> <NA>         64   18.6  <NA>
+      Fat Weight Feathers Blood Photo
+388     1  11.00     None  <NA>  <NA>
+2810 <NA>   <NA>     <NA>  <NA>  <NA>
+2906 <NA>   <NA>     <NA>  <NA>  <NA>
+3064 <NA>   <NA>     <NA>  <NA>  <NA>
+3103 <NA>   <NA>     <NA>  <NA>  <NA>
+         Injury           Notes InjuredLeg
+388  Old Injury Old color: PMTR        CoM
+2810       None            <NA>       None
+2906       None            <NA>       None
+3064       None            <NA>       None
+3103       None            <NA>       None
+     TypeOfInjury     Date     Time Year
+388       calFeet 08/11/18 11:10:35 2018
+2810         None 23/10/17 11:40:38 2017
+2906         None 17/10/17 09:40:00 2017
+3064         None 28/09/17 10:00:08 2017
+3103         None 26/09/17 12:28:09 2017
+     Personality Tail Recapture2 duplicat
+388      calFeet <NA>  Recapture    FALSE
+2810        <NA> <NA>  Recapture     TRUE
+2906        <NA> <NA>  Recapture     TRUE
+3064        <NA> <NA>  Recapture     TRUE
+3103        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+388              65     26.5       29.2
+2810             NA       NA         NA
+2906             NA       NA         NA
+3064             NA       NA         NA
+3103             64       NA       18.6
+     bloodCorrect TagLength environement
+388            No        10         high
+2810           No        10         high
+2906           No        10         high
+3064           No        10         high
+3103           No        10         high
+     dateLength dateCorrected
+388           8    2018-11-08
+2810          8    2017-10-23
+2906          8    2017-10-17
+3064          8    2017-09-28
+3103          8    2017-09-26
+[1] "--------------------------"
+[1] "030002AD31: several Color combo for same tag ind:191"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+280     7476306        7476  306 030002AD31
+1102    7476306        7476  306 030002AD31
+9328    7476306        7476  306 030002AD31
+     Color Species Recapture Site Nest.Number
+280   XMTN   Great Recapture   C4        <NA>
+1102  AMTN   Great Recapture   C1        C109
+9328  AMTN   Great      <NA>   C4        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+280      MB   M +1a      80.00  22.70 30.80
+1102     BM   M +1a         82   22.3  31.5
+9328     MC   M +1a         78  22.20 30.80
+     Fat Weight       Feathers     Blood Photo
+280    0  17.90           None      <NA>   Yes
+1102   0   17.2 Tail and color       Yes   Yes
+9328   0  18.40            Yes Small-DNA   Yes
+         Injury
+280  Old Injury
+1102       None
+9328       <NA>
+                                    Notes
+280  Debut de necrose / old colour : amtn
+1102                                 <NA>
+9328                                 <NA>
+     InjuredLeg TypeOfInjury     Date     Time
+280         CoM      CalFeet 19/11/18 11:46:01
+1102       <NA>         <NA> 27/05/18 11:07:46
+9328       None         None 10/11/14 10:36:10
+     Year Personality Tail Recapture2 duplicat
+280  2018        <NA> <NA>  Recapture    FALSE
+1102 2018        <NA> <NA>  Recapture     TRUE
+9328 2014        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+280              80     30.8       22.7
+1102             82     31.5       22.3
+9328             78     30.8       22.2
+     bloodCorrect TagLength environement
+280            No        10         high
+1102          Yes        10          low
+9328          Yes        10         high
+     dateLength dateCorrected
+280           8    2018-11-19
+1102          8    2018-05-27
+9328          8    2014-11-10
+[1] "--------------------------"
+[1] "011017442F: several AGE for same tag ind:194"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+494     8425987        8425  987 011017442F
+1093    8425987        8425  987 011017442F
+     Color Species Recapture Site Nest.Number
+494   MBTG   Great Recapture   C4        <NA>
+1093  MBTG   Great  New Bird   C1        C147
+     Bander Sex Age Wing.chord Tarsus  Head
+494      MB   F +1a      75.00  22.90 30.50
+1093     BM   F  1a         76   22.7  31.1
+     Fat Weight       Feathers Blood
+494    0  17.00           None   Yes
+1093   0   17.8 Tail and color  <NA>
+                  Photo Injury Notes
+494  Yes without breast   None  <NA>
+1093                Yes   None  <NA>
+     InjuredLeg TypeOfInjury     Date     Time
+494        None         None 05/11/18 12:50:24
+1093       <NA>         <NA> 28/05/18 15:51:27
+     Year Personality Tail Recapture2 duplicat
+494  2018        <NA> <NA>  Recapture    FALSE
+1093 2018        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+494              75     30.5       22.9
+1093             76     31.1       22.7
+     bloodCorrect TagLength environement
+494           Yes        10         high
+1093           No        10          low
+     dateLength dateCorrected
+494           8    2018-11-05
+1093          8    2018-05-28
+[1] "--------------------------"
+[1] "0110173EFF: several BANDNUMBER for same tag ind:214"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+332    8383208        8383  208 0110173EFF
+392    8383208        8383  208 0110173EFF
+395    8383227        8383  227 0110173EFF
+473    8383208        8383  208 0110173EFF
+    Color Species Recapture Site Nest.Number
+332  OMTN   Marsh Recapture   C4        <NA>
+392  OMTN   Marsh Recapture   C4        <NA>
+395  CMTW   Great  New Bird   C4        <NA>
+473  OMTN   Marsh  New Bird   C4        <NA>
+    Bander  Sex  Age Wing.chord Tarsus  Head
+332     MB <NA> <NA>       <NA>   <NA>  <NA>
+392     MB <NA> <NA>       <NA>   <NA>  <NA>
+395     MB    F  +1a      74.00  22.10 30.20
+473     MB <NA> <NA>      65.00  19.30 26.80
+     Fat Weight Feathers Blood Photo Injury
+332 <NA>   <NA>     None  <NA>  <NA>   None
+392 <NA>   <NA>     None  <NA>  <NA>   None
+395    0  17.00     None   Yes   Yes   None
+473    0  11.00     None  <NA>  <NA>   None
+    Notes InjuredLeg TypeOfInjury     Date
+332  <NA>       None         None 12/11/18
+392  <NA>       None         None 08/11/18
+395  <NA>       None         None 08/11/18
+473  <NA>       None         None 05/11/18
+        Time Year Personality Tail Recapture2
+332 10:24:31 2018        <NA> <NA>  Recapture
+392 10:08:09 2018        <NA> <NA>  Recapture
+395 10:09:59 2018        <NA> <NA>   New Bird
+473 12:05:19 2018        <NA> <NA>   New Bird
+    duplicat Wing.chord.num Head.num
+332    FALSE             NA       NA
+392     TRUE             NA       NA
+395    FALSE             74     30.2
+473     TRUE             65     26.8
+    Tarsus.num bloodCorrect TagLength
+332         NA           No        10
+392         NA           No        10
+395       22.1          Yes        10
+473       19.3           No        10
+    environement dateLength dateCorrected
+332         high          8    2018-11-12
+392         high          8    2018-11-08
+395         high          8    2018-11-08
+473         high          8    2018-11-05
+[1] "--------------------------"
+[1] "0110173EFF: several Color combo for same tag ind:214"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+332    8383208        8383  208 0110173EFF
+392    8383208        8383  208 0110173EFF
+395    8383227        8383  227 0110173EFF
+473    8383208        8383  208 0110173EFF
+    Color Species Recapture Site Nest.Number
+332  OMTN   Marsh Recapture   C4        <NA>
+392  OMTN   Marsh Recapture   C4        <NA>
+395  CMTW   Great  New Bird   C4        <NA>
+473  OMTN   Marsh  New Bird   C4        <NA>
+    Bander  Sex  Age Wing.chord Tarsus  Head
+332     MB <NA> <NA>       <NA>   <NA>  <NA>
+392     MB <NA> <NA>       <NA>   <NA>  <NA>
+395     MB    F  +1a      74.00  22.10 30.20
+473     MB <NA> <NA>      65.00  19.30 26.80
+     Fat Weight Feathers Blood Photo Injury
+332 <NA>   <NA>     None  <NA>  <NA>   None
+392 <NA>   <NA>     None  <NA>  <NA>   None
+395    0  17.00     None   Yes   Yes   None
+473    0  11.00     None  <NA>  <NA>   None
+    Notes InjuredLeg TypeOfInjury     Date
+332  <NA>       None         None 12/11/18
+392  <NA>       None         None 08/11/18
+395  <NA>       None         None 08/11/18
+473  <NA>       None         None 05/11/18
+        Time Year Personality Tail Recapture2
+332 10:24:31 2018        <NA> <NA>  Recapture
+392 10:08:09 2018        <NA> <NA>  Recapture
+395 10:09:59 2018        <NA> <NA>   New Bird
+473 12:05:19 2018        <NA> <NA>   New Bird
+    duplicat Wing.chord.num Head.num
+332    FALSE             NA       NA
+392     TRUE             NA       NA
+395    FALSE             74     30.2
+473     TRUE             65     26.8
+    Tarsus.num bloodCorrect TagLength
+332         NA           No        10
+392         NA           No        10
+395       22.1          Yes        10
+473       19.3           No        10
+    environement dateLength dateCorrected
+332         high          8    2018-11-12
+392         high          8    2018-11-08
+395         high          8    2018-11-08
+473         high          8    2018-11-05
+[1] "--------------------------"
+[1] "0110173EFF: several SPECIES for same tag ind:214"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+332    8383208        8383  208 0110173EFF
+392    8383208        8383  208 0110173EFF
+395    8383227        8383  227 0110173EFF
+473    8383208        8383  208 0110173EFF
+    Color Species Recapture Site Nest.Number
+332  OMTN   Marsh Recapture   C4        <NA>
+392  OMTN   Marsh Recapture   C4        <NA>
+395  CMTW   Great  New Bird   C4        <NA>
+473  OMTN   Marsh  New Bird   C4        <NA>
+    Bander  Sex  Age Wing.chord Tarsus  Head
+332     MB <NA> <NA>       <NA>   <NA>  <NA>
+392     MB <NA> <NA>       <NA>   <NA>  <NA>
+395     MB    F  +1a      74.00  22.10 30.20
+473     MB <NA> <NA>      65.00  19.30 26.80
+     Fat Weight Feathers Blood Photo Injury
+332 <NA>   <NA>     None  <NA>  <NA>   None
+392 <NA>   <NA>     None  <NA>  <NA>   None
+395    0  17.00     None   Yes   Yes   None
+473    0  11.00     None  <NA>  <NA>   None
+    Notes InjuredLeg TypeOfInjury     Date
+332  <NA>       None         None 12/11/18
+392  <NA>       None         None 08/11/18
+395  <NA>       None         None 08/11/18
+473  <NA>       None         None 05/11/18
+        Time Year Personality Tail Recapture2
+332 10:24:31 2018        <NA> <NA>  Recapture
+392 10:08:09 2018        <NA> <NA>  Recapture
+395 10:09:59 2018        <NA> <NA>   New Bird
+473 12:05:19 2018        <NA> <NA>   New Bird
+    duplicat Wing.chord.num Head.num
+332    FALSE             NA       NA
+392     TRUE             NA       NA
+395    FALSE             74     30.2
+473     TRUE             65     26.8
+    Tarsus.num bloodCorrect TagLength
+332         NA           No        10
+392         NA           No        10
+395       22.1          Yes        10
+473       19.3           No        10
+    environement dateLength dateCorrected
+332         high          8    2018-11-12
+392         high          8    2018-11-08
+395         high          8    2018-11-08
+473         high          8    2018-11-05
+[1] "--------------------------"
+[1] "0700ED94F2: several Color combo for same tag ind:234"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+1806    7476812        7476  812 0700ED94F2
+2938    7476812        7476  812 0700ED94F2
+4362    7476812        7476  812 0700ED94F2
+7798    7476812        7476  812 0700ED94F2
+        Color Species Recapture Site
+1806     VMTC    Blue Recapture   M1
+2938     VMTC    Blue Recapture   M1
+4362     VMTC    Blue       Yes Nest
+7798 VMTC\n\n    Blue      <NA>   M1
+     Nest.Number Bander  Sex Age Wing.chord
+1806        M124     AT    M +1a      70.00
+2938        <NA>     AT    M +1a      69.00
+4362        M106     AT    M +1a      69.00
+7798        <NA>   <NA> <NA> +1a         65
+     Tarsus  Head Fat Weight       Feathers
+1806  19.80 25.00   0  11.70      Tail only
+2938  19.70 25.00   1  11.60 Tail and color
+4362  19.70 24.90   0  11.18 Tail and color
+7798   19.2  24.4   0   <NA>            Yes
+         Blood Photo Injury
+1806       Yes   Yes   None
+2938       Yes   Yes   None
+4362 Small-DNA   Yes   None
+7798 Small-DNA   Yes   <NA>
+                          Notes InjuredLeg
+1806                       <NA>       None
+2938                       <NA>       None
+4362                       <NA>       None
+7798 Escaped before personality       None
+     TypeOfInjury     Date     Time Year
+1806         None 12/05/18 15:25:56 2018
+2938         None 13/10/17 09:36:44 2017
+4362         None 10/05/17 13:40:36 2017
+7798         None 07/10/15 14:23:18 2015
+     Personality Tail Recapture2 duplicat
+1806        <NA> <NA>  Recapture    FALSE
+2938        <NA> <NA>  Recapture     TRUE
+4362        <NA> <NA>  Recapture     TRUE
+7798           1 <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+1806             70     25.0       19.8
+2938             69     25.0       19.7
+4362             69     24.9       19.7
+7798             65     24.4       19.2
+     bloodCorrect TagLength environement
+1806          Yes        10          low
+2938          Yes        10          low
+4362          Yes        10         <NA>
+7798          Yes        10          low
+     dateLength dateCorrected
+1806          8    2018-05-12
+2938          8    2017-10-13
+4362          8    2017-05-10
+7798          8    2015-10-07
+[1] "--------------------------"
+[1] "0700EE00B6: several AGE for same tag ind:240"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+198     8425279        8425  279 0700EE00B6
+1711    8425279        8425  279 0700EE00B6
+     Color Species Recapture Site Nest.Number
+198   TAAM   Great Recapture   M1        <NA>
+1711  TAAM   Great  New Bird   M1        M098
+     Bander Sex Age Wing.chord Tarsus  Head
+198      MB   M +1a       <NA>   <NA>  <NA>
+1711     AT   M  1a      77.00  21.90 31.10
+      Fat Weight       Feathers Blood Photo
+198  <NA>   <NA>           None  <NA>  <NA>
+1711    0  18.00 Tail and color   Yes   Yes
+         Injury                    Notes
+198  Old Injury Release without measures
+1711       None                     <NA>
+     InjuredLeg TypeOfInjury     Date     Time
+198         Tag      AmpFeet 23/11/18 09:54:05
+1711       None         None 16/05/18 15:04:38
+     Year Personality Tail Recapture2 duplicat
+198  2018        <NA> <NA>  Recapture    FALSE
+1711 2018        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+198              NA       NA         NA
+1711             77     31.1       21.9
+     bloodCorrect TagLength environement
+198            No        10          low
+1711          Yes        10          low
+     dateLength dateCorrected
+198           8    2018-11-23
+1711          8    2018-05-16
+[1] "--------------------------"
+[1] "0700EDB553: several Color combo for same tag ind:250"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+197     8425195        8425  195 0700EDB553
+1141    8425195        8425  195 0700EDB553
+1956    8425195        8425  195 0700EDB553
+1957    8425195        8425  195 0700EDB553
+2180    8425195        8425  195 0700EDB553
+     Color Species Recapture Site Nest.Number
+197   TYMU   Great Recapture   M1        <NA>
+1141  TYMR   Great Recapture   M1        M031
+1956  TYMR   Great Recapture   L1        <NA>
+1957  TYMR   Great Recapture   L1        <NA>
+2180  TYMR   Great  New Bird   L1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+197     ASC   M +1a      77.00  21.80 31.00
+1141     LL   M  1a      75.00   21.5  30.9
+1956     AT   M  1a         77   21.5    31
+1957     LL   M  1a       76.5   21.6  30.9
+2180    CMS   M  1a       75.5   22.2  31.2
+     Fat Weight       Feathers     Blood Photo
+197    0  17.30           None       Yes   Yes
+1141   0   16.0 Tail and color Small-DNA   Yes
+1956   1   16.5           None      <NA>  <NA>
+1957   0   16.9           None      <NA>  <NA>
+2180   1   16.4 Tail and color       Yes   Yes
+     Injury          Notes InjuredLeg
+197    None           None       None
+1141   None No cravate pic       None
+1956   None           <NA>       None
+1957   None           <NA>       None
+2180   None           <NA>       None
+     TypeOfInjury     Date     Time Year
+197          <NA> 23/11/18 12:50:40 2018
+1141         None 26/05/18 10:00:24 2018
+1956         None 22/03/18 15:55:26 2018
+1957         None 22/03/18 14:55:05 2018
+2180         None 24/11/17 10:41:35 2017
+     Personality Tail Recapture2 duplicat
+197         <NA> <NA>  Recapture    FALSE
+1141        <NA> <NA>  Recapture     TRUE
+1956        <NA> <NA>  Recapture     TRUE
+1957        <NA> <NA>  Recapture     TRUE
+2180        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+197            77.0     31.0       21.8
+1141           75.0     30.9       21.5
+1956           77.0     31.0       21.5
+1957           76.5     30.9       21.6
+2180           75.5     31.2       22.2
+     bloodCorrect TagLength environement
+197           Yes        10          low
+1141          Yes        10          low
+1956           No        10          low
+1957           No        10          low
+2180          Yes        10          low
+     dateLength dateCorrected
+197           8    2018-11-23
+1141          8    2018-05-26
+1956          8    2018-03-22
+1957          8    2018-03-22
+2180          8    2017-11-24
+[1] "--------------------------"
+[1] "0700EDB553: several AGE for same tag ind:250"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+197     8425195        8425  195 0700EDB553
+1141    8425195        8425  195 0700EDB553
+1956    8425195        8425  195 0700EDB553
+1957    8425195        8425  195 0700EDB553
+2180    8425195        8425  195 0700EDB553
+     Color Species Recapture Site Nest.Number
+197   TYMU   Great Recapture   M1        <NA>
+1141  TYMR   Great Recapture   M1        M031
+1956  TYMR   Great Recapture   L1        <NA>
+1957  TYMR   Great Recapture   L1        <NA>
+2180  TYMR   Great  New Bird   L1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+197     ASC   M +1a      77.00  21.80 31.00
+1141     LL   M  1a      75.00   21.5  30.9
+1956     AT   M  1a         77   21.5    31
+1957     LL   M  1a       76.5   21.6  30.9
+2180    CMS   M  1a       75.5   22.2  31.2
+     Fat Weight       Feathers     Blood Photo
+197    0  17.30           None       Yes   Yes
+1141   0   16.0 Tail and color Small-DNA   Yes
+1956   1   16.5           None      <NA>  <NA>
+1957   0   16.9           None      <NA>  <NA>
+2180   1   16.4 Tail and color       Yes   Yes
+     Injury          Notes InjuredLeg
+197    None           None       None
+1141   None No cravate pic       None
+1956   None           <NA>       None
+1957   None           <NA>       None
+2180   None           <NA>       None
+     TypeOfInjury     Date     Time Year
+197          <NA> 23/11/18 12:50:40 2018
+1141         None 26/05/18 10:00:24 2018
+1956         None 22/03/18 15:55:26 2018
+1957         None 22/03/18 14:55:05 2018
+2180         None 24/11/17 10:41:35 2017
+     Personality Tail Recapture2 duplicat
+197         <NA> <NA>  Recapture    FALSE
+1141        <NA> <NA>  Recapture     TRUE
+1956        <NA> <NA>  Recapture     TRUE
+1957        <NA> <NA>  Recapture     TRUE
+2180        <NA> <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+197            77.0     31.0       21.8
+1141           75.0     30.9       21.5
+1956           77.0     31.0       21.5
+1957           76.5     30.9       21.6
+2180           75.5     31.2       22.2
+     bloodCorrect TagLength environement
+197           Yes        10          low
+1141          Yes        10          low
+1956           No        10          low
+1957           No        10          low
+2180          Yes        10          low
+     dateLength dateCorrected
+197           8    2018-11-23
+1141          8    2018-05-26
+1956          8    2018-03-22
+1957          8    2018-03-22
+2180          8    2017-11-24
+[1] "--------------------------"
+[1] "0700EDEE24: several Color combo for same tag ind:251"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+169     7969008        7969    8 0700EDEE24
+4667    7969008        7969    8 0700EDEE24
+5249    7969008        7969    8 0700EDEE24
+5383    7969008        7969    8 0700EDEE24
+5495    7969008        7969    8 0700EDEE24
+     Color Species Recapture Site Nest.Number
+169   TCCM    Blue Recapture   M1        <NA>
+4667  TCMX    Blue       Yes Nest        M118
+5249  TCXM    Blue       Yes   M1        <NA>
+5383  TCMX    Blue       Yes   M1        <NA>
+5495  TCMX    Blue      <NA>   M1        <NA>
+     Bander  Sex Age Wing.chord Tarsus  Head
+169     ASC <NA> +1a      68.00  18.90 25.00
+4667     AT    M  1a      67.00  18.70 25.20
+5249     LD <NA> +1a       <NA>   <NA>  <NA>
+5383     AT <NA>  1a       <NA>   <NA>  <NA>
+5495     MC <NA>  1a         66  18.75  24.1
+     Fat Weight       Feathers     Blood Photo
+169    0  12.10           None       Yes   Yes
+4667   0  10.65 Tail and color Small-DNA   Yes
+5249   0   <NA>           <NA> Small-DNA  <NA>
+5383   1   11.7           <NA>      <NA>  <NA>
+5495   0   11.8           <NA> Small-DNA  <NA>
+     Injury Notes InjuredLeg TypeOfInjury
+169    None  None       None         <NA>
+4667   None  <NA>       None         None
+5249   <NA>  <NA>       None         None
+5383   <NA>  <NA>       None         None
+5495   <NA>  <NA>       None         None
+         Date     Time Year Personality Tail
+169  23/11/18 10:50:10 2018        <NA> <NA>
+4667 07/05/17 10:41:29 2017        <NA> <NA>
+5249 17/01/17 09:54:11 2017        <NA> <NA>
+5383 06/12/16 11:40:46 2016     Perso01 <NA>
+5495 14/11/16 12:07:50 2016     Perso02 <NA>
+     Recapture2 duplicat Wing.chord.num
+169   Recapture    FALSE             68
+4667  Recapture     TRUE             67
+5249  Recapture     TRUE             NA
+5383  Recapture     TRUE             NA
+5495   New Bird     TRUE             66
+     Head.num Tarsus.num bloodCorrect
+169      25.0      18.90          Yes
+4667     25.2      18.70          Yes
+5249       NA         NA          Yes
+5383       NA         NA           No
+5495     24.1      18.75          Yes
+     TagLength environement dateLength
+169         10          low          8
+4667        10         <NA>          8
+5249        10          low          8
+5383        10          low          8
+5495        10          low          8
+     dateCorrected
+169     2018-11-23
+4667    2017-05-07
+5249    2017-01-17
+5383    2016-12-06
+5495    2016-11-14
+[1] "--------------------------"
+[1] "0110172D3B: several Color combo for same tag ind:256"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+167     8425175        8425  175 0110172D3B
+545     8425175        8425  175 0110172D3B
+2266    8425175        8425  175 0110172D3B
+     Color Species Recapture Site Nest.Number
+167   OMTV   Marsh Recapture   M1        <NA>
+545   OMTG   Marsh Recapture   M1        <NA>
+2266  OMTG   Marsh  New Bird   M1        <NA>
+     Bander  Sex  Age Wing.chord Tarsus  Head
+167     ASC <NA>  +1a       <NA>   <NA>  <NA>
+545      MB <NA> <NA>      63.50  18.40 26.80
+2266    CMS <NA> <NA>       63.5   18.9  27.4
+      Fat Weight Feathers Blood Photo Injury
+167  <NA>   <NA>     <NA>  <NA>  <NA>   None
+545     0  10.70     None  <NA>  <NA>   None
+2266    0   10.1     None  <NA>  <NA>   None
+     Notes InjuredLeg TypeOfInjury     Date
+167   <NA>       <NA>         <NA> 27/11/18
+545   <NA>       None         None 26/10/18
+2266  <NA>       None         None 21/11/17
+         Time Year Personality Tail Recapture2
+167  11:04:18 2018        <NA> <NA>  Recapture
+545  10:19:14 2018        <NA> <NA>  Recapture
+2266 10:18:21 2017        <NA> <NA>   New Bird
+     duplicat Wing.chord.num Head.num
+167     FALSE             NA       NA
+545      TRUE           63.5     26.8
+2266     TRUE           63.5     27.4
+     Tarsus.num bloodCorrect TagLength
+167          NA           No        10
+545        18.4           No        10
+2266       18.9           No        10
+     environement dateLength dateCorrected
+167           low          8    2018-11-27
+545           low          8    2018-10-26
+2266          low          8    2017-11-21
+[1] "--------------------------"
+[1] "011016D309: several Color combo for same tag ind:259"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+68     8383677        8383  677 011016D309
+151    8383677        8383  677 011016D309
+181    8383677        8383  677 011016D309
+    Color Species Recapture Site Nest.Number
+68   TCMP   Great Recapture   M1        <NA>
+151  TGMP   Great Recapture   M1        <NA>
+181  TCMP   Great  New Bird   M1        <NA>
+    Bander Sex Age Wing.chord Tarsus  Head
+68      MB   F +1a       <NA>   <NA>  <NA>
+151     MC   F +1a       <NA>   <NA>  <NA>
+181     MB   F +1a      75.50  22.20 31.00
+     Fat Weight Feathers     Blood Photo
+68  <NA>   <NA>     None      <NA>  <NA>
+151 <NA>   <NA>     None      <NA>  <NA>
+181    1  18.40     None Metabolom   Yes
+    Injury Notes InjuredLeg TypeOfInjury
+68    None  None       None         <NA>
+151   None  None       None         <NA>
+181   None  None       None         <NA>
+        Date     Time Year Personality Tail
+68  05/12/18 10:53:01 2018        <NA> <NA>
+151 27/11/18 11:08:57 2018        <NA> <NA>
+181 23/11/18 10:25:10 2018        <NA> <NA>
+    Recapture2 duplicat Wing.chord.num
+68   Recapture    FALSE             NA
+151  Recapture     TRUE             NA
+181   New Bird     TRUE           75.5
+    Head.num Tarsus.num bloodCorrect TagLength
+68        NA         NA           No        10
+151       NA         NA           No        10
+181       31       22.2          Yes        10
+    environement dateLength dateCorrected
+68           low          8    2018-12-05
+151          low          8    2018-11-27
+181          low          8    2018-11-23
+[1] "--------------------------"
+[1] "011016E371: several AGE for same tag ind:269"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+546     8425398        8425  398 011016E371
+1336    8425398        8425  398 011016E371
+     Color Species Recapture Site Nest.Number
+546   MVTV   Great Recapture   M1        <NA>
+1336  MVTV   Great  New Bird   M1        M120
+     Bander Sex Age Wing.chord Tarsus  Head
+546      MB   M +1a      77.50  22.50 29.70
+1336     AT   M  1a      76.00  22.80 30.60
+     Fat Weight       Feathers Blood Photo
+546    0  18.00           None   Yes   Yes
+1336   0  17.00 Tail and color   Yes   Yes
+     Injury Notes InjuredLeg TypeOfInjury
+546    None  <NA>       None         None
+1336   None  <NA>       None         None
+         Date     Time Year Personality Tail
+546  26/10/18 11:11:42 2018        <NA> <NA>
+1336 23/05/18 09:01:19 2018        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+546   Recapture    FALSE           77.5
+1336   New Bird     TRUE           76.0
+     Head.num Tarsus.num bloodCorrect
+546      29.7       22.5          Yes
+1336     30.6       22.8          Yes
+     TagLength environement dateLength
+546         10          low          8
+1336        10          low          8
+     dateCorrected
+546     2018-10-26
+1336    2018-05-23
+[1] "--------------------------"
+[1] "011016E03F: several BANDNUMBER for same tag ind:273"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+174     8383380        8383  380 011016E03F
+351     8383380        8383  380 011016E03F
+463     8383380        8383  380 011016E03F
+616     8383380        8383  380 011016E03F
+1933          0        <NA>    0 011016E03F
+2381    8425516        8425  516 011016E03F
+     Color Species Recapture         Site
+174   BMTV   Great Recapture           M1
+351   BMTV   Great Recapture           L1
+463   BMTV   Great Recapture           L1
+616   BMTV   Great  New Bird           L1
+1933  RWTV   Great  New Bird Grotte aliou
+2381  MWTV   Great  New Bird Grotte aliou
+     Nest.Number Bander Sex  Age Wing.chord
+174         <NA>     MB   F   1a       <NA>
+351         <NA>    JLJ   F   1a       <NA>
+463         <NA>     MB   F <NA>       <NA>
+616         <NA>     MB   F <NA>      74.00
+1933        <NA>    CMS   M   1a         75
+2381        <NA>    CMS   M   1a         75
+     Tarsus  Head  Fat Weight  Feathers Blood
+174    <NA>  <NA> <NA>   <NA>      None  <NA>
+351    <NA>  <NA>    1  16.20      None   Yes
+463    <NA>  <NA> <NA>   <NA>      None  <NA>
+616   22.10 30.00    1  17.40      None   Yes
+1933   22.2  30.7    0   17.4 Tail only   Yes
+2381   22.2  30.7    0   17.4 Tail only   Yes
+                  Photo Injury           Notes
+174                <NA>   None            None
+351                <NA>   None   Storage comp.
+463                <NA>   None            <NA>
+616  Yes without breast   None            <NA>
+1933                Yes   None            <NA>
+2381                Yes   None Previously RWTV
+     InjuredLeg TypeOfInjury     Date     Time
+174        None         <NA> 23/11/18 11:12:53
+351        None         None 11/11/18 08:11:16
+463        None         None 06/11/18 15:40:35
+616        None         None 16/10/18 16:10:02
+1933       <NA>         <NA> 23/03/18 12:36:39
+2381       None         None 14/11/17 10:00:00
+     Year Personality Tail Recapture2 duplicat
+174  2018        <NA> <NA>  Recapture    FALSE
+351  2018        <NA> <NA>  Recapture     TRUE
+463  2018        <NA> <NA>  Recapture     TRUE
+616  2018        <NA> <NA>   New Bird     TRUE
+1933 2018        <NA> <NA>   New Bird     TRUE
+2381 2017        <NA> <NA>   New Bird    FALSE
+     Wing.chord.num Head.num Tarsus.num
+174              NA       NA         NA
+351              NA       NA         NA
+463              NA       NA         NA
+616              74     30.0       22.1
+1933             75     30.7       22.2
+2381             75     30.7       22.2
+     bloodCorrect TagLength environement
+174            No        10          low
+351           Yes        10          low
+463            No        10          low
+616           Yes        10          low
+1933          Yes        10         <NA>
+2381          Yes        10         <NA>
+     dateLength dateCorrected
+174           8    2018-11-23
+351           8    2018-11-11
+463           8    2018-11-06
+616           8    2018-10-16
+1933          8    2018-03-23
+2381          8    2017-11-14
+[1] "--------------------------"
+[1] "011016E03F: several Color combo for same tag ind:273"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+174     8383380        8383  380 011016E03F
+351     8383380        8383  380 011016E03F
+463     8383380        8383  380 011016E03F
+616     8383380        8383  380 011016E03F
+1933          0        <NA>    0 011016E03F
+2381    8425516        8425  516 011016E03F
+     Color Species Recapture         Site
+174   BMTV   Great Recapture           M1
+351   BMTV   Great Recapture           L1
+463   BMTV   Great Recapture           L1
+616   BMTV   Great  New Bird           L1
+1933  RWTV   Great  New Bird Grotte aliou
+2381  MWTV   Great  New Bird Grotte aliou
+     Nest.Number Bander Sex  Age Wing.chord
+174         <NA>     MB   F   1a       <NA>
+351         <NA>    JLJ   F   1a       <NA>
+463         <NA>     MB   F <NA>       <NA>
+616         <NA>     MB   F <NA>      74.00
+1933        <NA>    CMS   M   1a         75
+2381        <NA>    CMS   M   1a         75
+     Tarsus  Head  Fat Weight  Feathers Blood
+174    <NA>  <NA> <NA>   <NA>      None  <NA>
+351    <NA>  <NA>    1  16.20      None   Yes
+463    <NA>  <NA> <NA>   <NA>      None  <NA>
+616   22.10 30.00    1  17.40      None   Yes
+1933   22.2  30.7    0   17.4 Tail only   Yes
+2381   22.2  30.7    0   17.4 Tail only   Yes
+                  Photo Injury           Notes
+174                <NA>   None            None
+351                <NA>   None   Storage comp.
+463                <NA>   None            <NA>
+616  Yes without breast   None            <NA>
+1933                Yes   None            <NA>
+2381                Yes   None Previously RWTV
+     InjuredLeg TypeOfInjury     Date     Time
+174        None         <NA> 23/11/18 11:12:53
+351        None         None 11/11/18 08:11:16
+463        None         None 06/11/18 15:40:35
+616        None         None 16/10/18 16:10:02
+1933       <NA>         <NA> 23/03/18 12:36:39
+2381       None         None 14/11/17 10:00:00
+     Year Personality Tail Recapture2 duplicat
+174  2018        <NA> <NA>  Recapture    FALSE
+351  2018        <NA> <NA>  Recapture     TRUE
+463  2018        <NA> <NA>  Recapture     TRUE
+616  2018        <NA> <NA>   New Bird     TRUE
+1933 2018        <NA> <NA>   New Bird     TRUE
+2381 2017        <NA> <NA>   New Bird    FALSE
+     Wing.chord.num Head.num Tarsus.num
+174              NA       NA         NA
+351              NA       NA         NA
+463              NA       NA         NA
+616              74     30.0       22.1
+1933             75     30.7       22.2
+2381             75     30.7       22.2
+     bloodCorrect TagLength environement
+174            No        10          low
+351           Yes        10          low
+463            No        10          low
+616           Yes        10          low
+1933          Yes        10         <NA>
+2381          Yes        10         <NA>
+     dateLength dateCorrected
+174           8    2018-11-23
+351           8    2018-11-11
+463           8    2018-11-06
+616           8    2018-10-16
+1933          8    2018-03-23
+2381          8    2017-11-14
+[1] "--------------------------"
+[1] "011016E03F: several SEX for same tag ind:273"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+174     8383380        8383  380 011016E03F
+351     8383380        8383  380 011016E03F
+463     8383380        8383  380 011016E03F
+616     8383380        8383  380 011016E03F
+1933          0        <NA>    0 011016E03F
+2381    8425516        8425  516 011016E03F
+     Color Species Recapture         Site
+174   BMTV   Great Recapture           M1
+351   BMTV   Great Recapture           L1
+463   BMTV   Great Recapture           L1
+616   BMTV   Great  New Bird           L1
+1933  RWTV   Great  New Bird Grotte aliou
+2381  MWTV   Great  New Bird Grotte aliou
+     Nest.Number Bander Sex  Age Wing.chord
+174         <NA>     MB   F   1a       <NA>
+351         <NA>    JLJ   F   1a       <NA>
+463         <NA>     MB   F <NA>       <NA>
+616         <NA>     MB   F <NA>      74.00
+1933        <NA>    CMS   M   1a         75
+2381        <NA>    CMS   M   1a         75
+     Tarsus  Head  Fat Weight  Feathers Blood
+174    <NA>  <NA> <NA>   <NA>      None  <NA>
+351    <NA>  <NA>    1  16.20      None   Yes
+463    <NA>  <NA> <NA>   <NA>      None  <NA>
+616   22.10 30.00    1  17.40      None   Yes
+1933   22.2  30.7    0   17.4 Tail only   Yes
+2381   22.2  30.7    0   17.4 Tail only   Yes
+                  Photo Injury           Notes
+174                <NA>   None            None
+351                <NA>   None   Storage comp.
+463                <NA>   None            <NA>
+616  Yes without breast   None            <NA>
+1933                Yes   None            <NA>
+2381                Yes   None Previously RWTV
+     InjuredLeg TypeOfInjury     Date     Time
+174        None         <NA> 23/11/18 11:12:53
+351        None         None 11/11/18 08:11:16
+463        None         None 06/11/18 15:40:35
+616        None         None 16/10/18 16:10:02
+1933       <NA>         <NA> 23/03/18 12:36:39
+2381       None         None 14/11/17 10:00:00
+     Year Personality Tail Recapture2 duplicat
+174  2018        <NA> <NA>  Recapture    FALSE
+351  2018        <NA> <NA>  Recapture     TRUE
+463  2018        <NA> <NA>  Recapture     TRUE
+616  2018        <NA> <NA>   New Bird     TRUE
+1933 2018        <NA> <NA>   New Bird     TRUE
+2381 2017        <NA> <NA>   New Bird    FALSE
+     Wing.chord.num Head.num Tarsus.num
+174              NA       NA         NA
+351              NA       NA         NA
+463              NA       NA         NA
+616              74     30.0       22.1
+1933             75     30.7       22.2
+2381             75     30.7       22.2
+     bloodCorrect TagLength environement
+174            No        10          low
+351           Yes        10          low
+463            No        10          low
+616           Yes        10          low
+1933          Yes        10         <NA>
+2381          Yes        10         <NA>
+     dateLength dateCorrected
+174           8    2018-11-23
+351           8    2018-11-11
+463           8    2018-11-06
+616           8    2018-10-16
+1933          8    2018-03-23
+2381          8    2017-11-14
+[1] "More F"
+[1] "--------------------------"
+[1] "011017009E: several AGE for same tag ind:285"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+173     8239764        8239  764 011017009E
+1660    8239764        8239  764 011017009E
+2665    8239764        8239  764 011017009E
+2817    8239764        8239  764 011017009E
+2882    8239764        8239  764 011017009E
+2982    8239764        8239  764 011017009E
+3007    8239764        8239  764 011017009E
+     Color Species Recapture Site Nest.Number
+173   TGPM    Blue Recapture   M1        <NA>
+1660  TGPM    Blue Recapture   M1        M114
+2665  TGPM    Blue Recapture   M1        <NA>
+2817  TGPM    Blue Recapture   M1        <NA>
+2882  TGPM    Blue Recapture   M1        <NA>
+2982  TGPM    Blue Recapture   M1        <NA>
+3007  TGPM    Blue Recapture   M1        <NA>
+     Bander  Sex Age Wing.chord Tarsus  Head
+173      MB <NA> +1a      68.00  19.50 24.50
+1660     AT    M  1a      67.00  19.40 24.80
+2665     AT    M  1a       <NA>   <NA>  <NA>
+2817     LL <NA>  1a       <NA>   <NA>  <NA>
+2882     AT <NA>  1a       <NA>   <NA>  <NA>
+2982     AT    M  1a       <NA>   <NA>  <NA>
+3007    CMM    M  1a      68.00  19.20 24.70
+     Fat Weight       Feathers Blood Photo
+173    1  11.60           None   Yes   Yes
+1660   0  10.60 Tail and color   Yes  <NA>
+2665   1  11.50           None  <NA>  <NA>
+2817   1  10.80           None   Yes  <NA>
+2882   2  11.10           None  <NA>  <NA>
+2982   1  11.10           None  <NA>  <NA>
+3007   2  11.20 Tail and color   Yes   Yes
+     Injury          Notes InjuredLeg
+173    None           None       None
+1660   None           <NA>       None
+2665   None           <NA>       None
+2817   None           <NA>       None
+2882   None           <NA>       None
+2982   None           <NA>       None
+3007   None WxGY chick2017       None
+     TypeOfInjury     Date     Time Year
+173          <NA> 23/11/18 12:48:24 2018
+1660         None 17/05/18 10:38:23 2018
+2665         None 30/10/17 10:24:01 2017
+2817         None 23/10/17 12:20:54 2017
+2882         None 18/10/17 09:54:08 2017
+2982         None 06/10/17 10:29:57 2017
+3007         None 05/10/17 11:19:54 2017
+     Personality Tail Recapture2 duplicat
+173         <NA> <NA>  Recapture    FALSE
+1660        <NA> <NA>  Recapture     TRUE
+2665        <NA> <NA>  Recapture     TRUE
+2817        <NA> <NA>  Recapture     TRUE
+2882        <NA> <NA>  Recapture     TRUE
+2982        <NA> <NA>  Recapture     TRUE
+3007        <NA> <NA>  Recapture     TRUE
+     Wing.chord.num Head.num Tarsus.num
+173              68     24.5       19.5
+1660             67     24.8       19.4
+2665             NA       NA         NA
+2817             NA       NA         NA
+2882             NA       NA         NA
+2982             NA       NA         NA
+3007             68     24.7       19.2
+     bloodCorrect TagLength environement
+173           Yes        10          low
+1660          Yes        10          low
+2665           No        10          low
+2817          Yes        10          low
+2882           No        10          low
+2982           No        10          low
+3007          Yes        10          low
+     dateLength dateCorrected
+173           8    2018-11-23
+1660          8    2018-05-17
+2665          8    2017-10-30
+2817          8    2017-10-23
+2882          8    2017-10-18
+2982          8    2017-10-06
+3007          8    2017-10-05
+[1] "--------------------------"
+[1] "0700EDC240: several AGE for same tag ind:287"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+143     8214339        8214  339 0700EDC240
+535     8214339        8214  339 0700EDC240
+1038    8214339        8214  339 0700EDC240
+2943    8214339        8214  339 0700EDC240
+2996    8214339        8214  339 0700EDC240
+     Color Species Recapture Site Nest.Number
+143   UMTR   Great Recapture   M1        <NA>
+535   UMTR   Great Recapture   M1        <NA>
+1038  UMTR   Great Recapture   M1        M117
+2943  UMTR   Great Recapture   M1        <NA>
+2996  UMTR   Great Recapture   M1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+143     ASC   M +1a       <NA>   <NA>  <NA>
+535      MB   M +1a      78.00  22.10 31.20
+1038     LL   M  1a      76.00  21.60 31.20
+2943     AT   M  1a       <NA>   <NA>  <NA>
+2996     AT   M  1a      78.00  21.80 31.20
+     Fat Weight       Feathers Blood Photo
+143    0   <NA>           <NA>   Yes  <NA>
+535    0  18.60           None   Yes   Yes
+1038   0  17.30     Color only   Yes   Yes
+2943   1  17.10           None  <NA>  <NA>
+2996   1  18.20 Tail and color   Yes   Yes
+         Injury
+143        None
+535  Old Injury
+1038       None
+2943       None
+2996       None
+                                        Notes
+143                                      <NA>
+535                                      <NA>
+1038                        Queue trop abimee
+2943                                     <NA>
+2996 Old Chick of 2017!  Blood for nutrition 
+     InjuredLeg TypeOfInjury     Date     Time
+143        <NA>         <NA> 27/11/18 11:42:30
+535         Tag      MalForm 26/10/18 10:47:07
+1038       None         None 28/05/18 09:25:39
+2943       None         None 13/10/17 11:40:39
+2996       None         None 05/10/17 10:20:41
+     Year Personality Tail Recapture2 duplicat
+143  2018        <NA> <NA>  Recapture    FALSE
+535  2018        <NA> <NA>  Recapture     TRUE
+1038 2018        <NA> <NA>  Recapture     TRUE
+2943 2017        <NA> <NA>  Recapture     TRUE
+2996 2017        <NA> <NA>  Recapture     TRUE
+     Wing.chord.num Head.num Tarsus.num
+143              NA       NA         NA
+535              78     31.2       22.1
+1038             76     31.2       21.6
+2943             NA       NA         NA
+2996             78     31.2       21.8
+     bloodCorrect TagLength environement
+143           Yes        10          low
+535           Yes        10          low
+1038          Yes        10          low
+2943           No        10          low
+2996          Yes        10          low
+     dateLength dateCorrected
+143           8    2018-11-27
+535           8    2018-10-26
+1038          8    2018-05-28
+2943          8    2017-10-13
+2996          8    2017-10-05
+[1] "--------------------------"
+[1] "01101735C7: several AGE for same tag ind:289"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+172     8239748        8239  748 01101735C7
+2787    8239748        8239  748 01101735C7
+2945    8239748        8239  748 01101735C7
+3000    8239748        8239  748 01101735C7
+3090    8239748        8239  748 01101735C7
+     Color Species Recapture Site Nest.Number
+172   BMTW   Great Recapture   M1        <NA>
+2787  BMTW   Great Recapture   M1        <NA>
+2945  BMTW   Great Recapture   M1        <NA>
+3000  BMTW   Great Recapture   M1        <NA>
+3090  BMTW   Great  New Bird   M1        <NA>
+     Bander Sex  Age Wing.chord Tarsus  Head
+172      MB   F  +1a      73.50  21.90 30.00
+2787     AT   F   1a       <NA>   <NA>  <NA>
+2945     AT   F   1a       <NA>   <NA>  <NA>
+3000    CMM   F <NA>       <NA>   <NA>  <NA>
+3090     AT   F   1a      73.00  21.90 30.10
+     Fat Weight       Feathers Blood Photo
+172    0  17.00           None   Yes   Yes
+2787   1  16.60           None  <NA>  <NA>
+2945   2  16.60           None   Yes  <NA>
+3000   0  17.10           None  <NA>  <NA>
+3090   1  16.70 Tail and color   Yes  <NA>
+     Injury Notes InjuredLeg TypeOfInjury
+172    None  None       None         <NA>
+2787   None  <NA>       None         None
+2945   None  <NA>       None         None
+3000   None  <NA>       None         None
+3090   None  <NA>       None         None
+         Date     Time Year Personality Tail
+172  23/11/18 11:15:59 2018        <NA> <NA>
+2787 24/10/17 10:45:34 2017        <NA> <NA>
+2945 13/10/17 09:55:54 2017        <NA> <NA>
+3000 05/10/17 11:12:02 2017        <NA> <NA>
+3090 28/09/17 12:37:05 2017        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+172   Recapture    FALSE           73.5
+2787  Recapture     TRUE             NA
+2945  Recapture     TRUE             NA
+3000  Recapture     TRUE             NA
+3090   New Bird     TRUE           73.0
+     Head.num Tarsus.num bloodCorrect
+172      30.0       21.9          Yes
+2787       NA         NA           No
+2945       NA         NA          Yes
+3000       NA         NA           No
+3090     30.1       21.9          Yes
+     TagLength environement dateLength
+172         10          low          8
+2787        10          low          8
+2945        10          low          8
+3000        10          low          8
+3090        10          low          8
+     dateCorrected
+172     2018-11-23
+2787    2017-10-24
+2945    2017-10-13
+3000    2017-10-05
+3090    2017-09-28
+[1] "--------------------------"
+[1] "0700EDD8A5: several Color combo for same tag ind:300"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+1788    7969132        7969  132 0700EDD8A5
+5471    7969132        7969  132 0700EDD8A5
+5497    7969132        7969  132 0700EDD8A5
+     Color Species Recapture Site Nest.Number
+1788  MXTR    Blue Recapture   M1        M107
+5471  XMTR    Blue       Yes   M1        <NA>
+5497  XMTR    Blue      <NA>   M1        <NA>
+     Bander  Sex Age Wing.chord Tarsus  Head
+1788     AT    F +1a      65.00  19.00 24.70
+5471     LL <NA>  1a       <NA>   <NA>  <NA>
+5497    ASC <NA>  1a         64   19.1  24.5
+     Fat Weight       Feathers     Blood Photo
+1788   0  10.50 Tail and color       Yes   Yes
+5471   0   10.4           <NA>      <NA>  <NA>
+5497   2   10.9           tail Small-DNA   Yes
+     Injury              Notes InjuredLeg
+1788   None               <NA>       None
+5471   <NA> Not measured again       None
+5497   <NA>               <NA>       None
+     TypeOfInjury     Date     Time Year
+1788         None 14/05/18 09:36:32 2018
+5471         None 18/11/16 11:21:49 2016
+5497         None 14/11/16 10:58:00 2016
+     Personality Tail Recapture2 duplicat
+1788        <NA> <NA>  Recapture    FALSE
+5471        <NA> <NA>  Recapture     TRUE
+5497     Perso02 <NA>   New Bird     TRUE
+     Wing.chord.num Head.num Tarsus.num
+1788             65     24.7       19.0
+5471             NA       NA         NA
+5497             64     24.5       19.1
+     bloodCorrect TagLength environement
+1788          Yes        10          low
+5471           No        10          low
+5497          Yes        10          low
+     dateLength dateCorrected
+1788          8    2018-05-14
+5471          8    2016-11-18
+5497          8    2016-11-14
+[1] "--------------------------"
+[1] "011016A9FC: several BANDNUMBER for same tag ind:303"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+182    8383678        8383  678 011016A9FC
+183    8383679        8383  679 011016A9FC
+    Color Species Recapture Site Nest.Number
+182  TVMY   Great  New Bird   M1        <NA>
+183  TVMY    Blue  New Bird   M1        <NA>
+    Bander  Sex Age Wing.chord Tarsus  Head
+182    ASC    F  1a      75.00  21.80 30.50
+183     MB <NA> +1a      65.00  19.20 24.90
+    Fat Weight Feathers     Blood Photo Injury
+182   0  17.50     None Metabolom   Yes   None
+183   0  10.40     None       Yes   Yes   None
+    Notes InjuredLeg TypeOfInjury     Date
+182  None       None         <NA> 23/11/18
+183  None       None         <NA> 23/11/18
+        Time Year Personality Tail Recapture2
+182 10:30:02 2018        <NA> <NA>   New Bird
+183 10:40:07 2018        <NA> <NA>   New Bird
+    duplicat Wing.chord.num Head.num
+182    FALSE             75     30.5
+183    FALSE             65     24.9
+    Tarsus.num bloodCorrect TagLength
+182       21.8          Yes        10
+183       19.2          Yes        10
+    environement dateLength dateCorrected
+182          low          8    2018-11-23
+183          low          8    2018-11-23
+[1] "--------------------------"
+[1] "011016A9FC: several SPECIES for same tag ind:303"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+182    8383678        8383  678 011016A9FC
+183    8383679        8383  679 011016A9FC
+    Color Species Recapture Site Nest.Number
+182  TVMY   Great  New Bird   M1        <NA>
+183  TVMY    Blue  New Bird   M1        <NA>
+    Bander  Sex Age Wing.chord Tarsus  Head
+182    ASC    F  1a      75.00  21.80 30.50
+183     MB <NA> +1a      65.00  19.20 24.90
+    Fat Weight Feathers     Blood Photo Injury
+182   0  17.50     None Metabolom   Yes   None
+183   0  10.40     None       Yes   Yes   None
+    Notes InjuredLeg TypeOfInjury     Date
+182  None       None         <NA> 23/11/18
+183  None       None         <NA> 23/11/18
+        Time Year Personality Tail Recapture2
+182 10:30:02 2018        <NA> <NA>   New Bird
+183 10:40:07 2018        <NA> <NA>   New Bird
+    duplicat Wing.chord.num Head.num
+182    FALSE             75     30.5
+183    FALSE             65     24.9
+    Tarsus.num bloodCorrect TagLength
+182       21.8          Yes        10
+183       19.2          Yes        10
+    environement dateLength dateCorrected
+182          low          8    2018-11-23
+183          low          8    2018-11-23
+[1] "--------------------------"
+[1] "011016A9FC: several AGE for same tag ind:303"
+[1] "--------------------------"
+    BandNumber Band.prefix Band      RFID.
+182    8383678        8383  678 011016A9FC
+183    8383679        8383  679 011016A9FC
+    Color Species Recapture Site Nest.Number
+182  TVMY   Great  New Bird   M1        <NA>
+183  TVMY    Blue  New Bird   M1        <NA>
+    Bander  Sex Age Wing.chord Tarsus  Head
+182    ASC    F  1a      75.00  21.80 30.50
+183     MB <NA> +1a      65.00  19.20 24.90
+    Fat Weight Feathers     Blood Photo Injury
+182   0  17.50     None Metabolom   Yes   None
+183   0  10.40     None       Yes   Yes   None
+    Notes InjuredLeg TypeOfInjury     Date
+182  None       None         <NA> 23/11/18
+183  None       None         <NA> 23/11/18
+        Time Year Personality Tail Recapture2
+182 10:30:02 2018        <NA> <NA>   New Bird
+183 10:40:07 2018        <NA> <NA>   New Bird
+    duplicat Wing.chord.num Head.num
+182    FALSE             75     30.5
+183    FALSE             65     24.9
+    Tarsus.num bloodCorrect TagLength
+182       21.8          Yes        10
+183       19.2          Yes        10
+    environement dateLength dateCorrected
+182          low          8    2018-11-23
+183          low          8    2018-11-23
+[1] "--------------------------"
+[1] "01101751D3: several Color combo for same tag ind:304"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+1513    7969012        7969   12 01101751D3
+2966    7969012        7969   12 01101751D3
+4363    7969012        7969   12 01101751D3
+5351    7969012        7969   12 01101751D3
+5467    7969012        7969   12 01101751D3
+     Color Species Recapture Site Nest.Number
+1513  TNXM    Blue Recapture   M1        M091
+2966  TNMX    Blue Recapture   M1        <NA>
+4363  TNMX    Blue       Yes Nest        M076
+5351  TNMX    Blue       Yes   M1        <NA>
+5467  TNMX    Blue      <NA>   M1        <NA>
+     Bander  Sex Age Wing.chord Tarsus  Head
+1513     AT    M +1a      69.00  19.70 25.00
+2966     AT    M +1a      70.00  19.70 24.70
+4363     AT    M  1a      69.00  19.80 25.00
+5351     AT <NA>  1a         69   19.7  24.7
+5467    ASC <NA>  1a         68     20  24.5
+     Fat Weight       Feathers     Blood Photo
+1513   0  11.10 Tail and color       Yes  <NA>
+2966   1  11.90 Tail and color       Yes   Yes
+4363   1  11.71 Tail and color Small-DNA   Yes
+5351   1   11.5           <NA> Small-DNA  <NA>
+5467   0   11.6           tail Small-DNA   Yes
+     Injury Notes InjuredLeg TypeOfInjury
+1513   None  <NA>       None         None
+2966   None  <NA>       None         None
+4363   None  <NA>       None         None
+5351   <NA>  <NA>       None         None
+5467   <NA>  <NA>       None         None
+         Date     Time Year Personality Tail
+1513 19/05/18 13:34:57 2018        <NA> <NA>
+2966 06/10/17 13:26:42 2017        <NA> <NA>
+4363 10/05/17 14:31:25 2017        <NA> <NA>
+5351 12/12/16 12:49:55 2016     Perso02 <NA>
+5467 18/11/16 11:07:32 2016        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+1513  Recapture    FALSE             69
+2966  Recapture     TRUE             70
+4363  Recapture     TRUE             69
+5351  Recapture     TRUE             69
+5467   New Bird     TRUE             68
+     Head.num Tarsus.num bloodCorrect
+1513     25.0       19.7          Yes
+2966     24.7       19.7          Yes
+4363     25.0       19.8          Yes
+5351     24.7       19.7          Yes
+5467     24.5       20.0          Yes
+     TagLength environement dateLength
+1513        10          low          8
+2966        10          low          8
+4363        10         <NA>          8
+5351        10          low          8
+5467        10          low          8
+     dateCorrected
+1513    2018-05-19
+2966    2017-10-06
+4363    2017-05-10
+5351    2016-12-12
+5467    2016-11-18
+[1] "--------------------------"
+[1] "0700EE0192: several Color combo for same tag ind:310"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+1708    8239765        8239  765 0700EE0192
+2218    8239765        8239  765 0700EE0192
+2666    8239765        8239  765 0700EE0192
+2788    8239765        8239  765 0700EE0192
+3008    8239765        8239  765 0700EE0192
+     Color Species Recapture Site Nest.Number
+1708  TANM   Great Recapture   M1        M121
+2218  TANM   Great Recapture   M1        <NA>
+2666  TANM   Great Recapture   M1        <NA>
+2788  TANM   Great Recapture   M1        <NA>
+3008  TAMN   Great  New Bird   M1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+1708     LL   M  1a      75.00  22.00 30.70
+2218     AT   M  1a       <NA>   <NA>  <NA>
+2666     AT   M  1a       <NA>   <NA>  <NA>
+2788     AT   M  1a       <NA>   <NA>  <NA>
+3008     AT   M  1a      75.00  22.10 30.50
+     Fat Weight       Feathers Blood Photo
+1708   0   <NA>      Tail only   Yes   Yes
+2218   1  17.30           None   Yes  <NA>
+2666   1  16.00           None  <NA>  <NA>
+2788   1  17.00           None   Yes  <NA>
+3008   1  17.40 Tail and color   Yes   Yes
+     Injury Notes InjuredLeg TypeOfInjury
+1708   None  <NA>       None         None
+2218   None  <NA>       None         None
+2666   None  <NA>       None         None
+2788   None  Wwog       None         None
+3008   None  <NA>       None         None
+         Date     Time Year Personality Tail
+1708 16/05/18 13:29:18 2018        <NA> <NA>
+2218 22/11/17 11:51:42 2017        <NA> <NA>
+2666 30/10/17 09:47:53 2017        <NA> <NA>
+2788 24/10/17 11:11:14 2017        <NA> <NA>
+3008 05/10/17 11:34:08 2017        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+1708  Recapture    FALSE             75
+2218  Recapture     TRUE             NA
+2666  Recapture     TRUE             NA
+2788  Recapture     TRUE             NA
+3008   New Bird     TRUE             75
+     Head.num Tarsus.num bloodCorrect
+1708     30.7       22.0          Yes
+2218       NA         NA          Yes
+2666       NA         NA           No
+2788       NA         NA          Yes
+3008     30.5       22.1          Yes
+     TagLength environement dateLength
+1708        10          low          8
+2218        10          low          8
+2666        10          low          8
+2788        10          low          8
+3008        10          low          8
+     dateCorrected
+1708    2018-05-16
+2218    2017-11-22
+2666    2017-10-30
+2788    2017-10-24
+3008    2017-10-05
+[1] "--------------------------"
+[1] "011016A257: several AGE for same tag ind:314"
+[1] "--------------------------"
+     BandNumber Band.prefix Band      RFID.
+194     8425046        8425   46 011016A257
+2671    8425046        8425   46 011016A257
+     Color Species Recapture Site Nest.Number
+194   VMTV   Great Recapture   M1        <NA>
+2671  VMTV   Great  New Bird   M1        <NA>
+     Bander Sex Age Wing.chord Tarsus  Head
+194      MB   M +1a      77.50  23.50 30.60
+2671     AT   M  1a      78.00  23.50 30.80
+     Fat Weight       Feathers Blood Photo
+194    1  18.50           None   Yes   Yes
+2671   1  18.00 Tail and color   Yes   Yes
+     Injury Notes InjuredLeg TypeOfInjury
+194    None  None       None         <NA>
+2671   None  <NA>       None         None
+         Date     Time Year Personality Tail
+194  23/11/18 12:36:51 2018        <NA> <NA>
+2671 30/10/17 11:37:15 2017        <NA> <NA>
+     Recapture2 duplicat Wing.chord.num
+194   Recapture    FALSE           77.5
+2671   New Bird     TRUE           78.0
+     Head.num Tarsus.num bloodCorrect
+194      30.6       23.5          Yes
+2671     30.8       23.5          Yes
+     TagLength environement dateLength
+194         10          low          8
+2671        10          low          8
+     dateCorrected
+194     2018-11-23
+2671    2017-10-30
