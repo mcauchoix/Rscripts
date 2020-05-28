@@ -23,7 +23,7 @@ out="~/Dropbox/wild_cog_OF/banding/"
 #-------------------------------------
 # A- Merge and Clean banding (ADD NUMERIC VARIABLE)
 #-------------------------------------
-source('~/IAST Dropbox/maxime cauchoix/wild_cog_OF/Rscripts/band_clean_2018_19.R')
+source('~/Documents/wild_cog_OF/Rscripts/band_clean_2018_19.R')
 
 #-------------------------------------
 # C- Summarise 1 ligne by tag
