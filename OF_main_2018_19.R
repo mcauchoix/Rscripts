@@ -161,7 +161,7 @@ dall <- merge(d,ball,by="tag", all.x=T,sort=F)#all.x=F (keep only bird with band
 
 # 5 - identify missing tag
 # -------------------------
-source('~/IAST Dropbox/maxime cauchoix/wild_cog_OF/Rscripts/OF_identify_tag_nobanding.R')
+source('~/Documents/wild_cog_OF/Rscripts/OF_identify_tag_nobanding.R')
 
 # 6- remove  tag 
 # -------------------------
@@ -171,13 +171,17 @@ d=d[d$tag %in% v$tag[v$nbvisitTotal>100],]
 d=d[!(d$tag %in% c('0300030F40','0110170902','0700EDCD6C','011017939E')),]#Maxime
 # check removed bird
 dall=d
-source('~/IAST Dropbox/maxime cauchoix/wild_cog_OF/Rscripts/OF_identify_tag_nobanding.R')
+source('~/Documents/wild_cog_OF/Rscripts/OF_identify_tag_nobanding.R')
 #write.table(vNot,paste0(out_f,'NotInBanding.csv'),sep=";",row.names = F)
 # Remove NO DATA tag
 #d=d[d$tag!='',] #!!!There is an issue in merge with folder info added while there is no data
 
 # with banding info only
 d <- merge(dall,ball,by="tag", all.x=F,sort=F)#all.x=F (keep only bird with banding data)
+
+# to keep Nory's tag for Neophobia
+d <- merge(dall,ball,by="tag", all.x=T,sort=F)#all.x=F (keep only bird with banding data)
+
 
 #7- Clean data and add variables
 #-------------------------------
