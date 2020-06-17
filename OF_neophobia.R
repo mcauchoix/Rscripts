@@ -1,6 +1,6 @@
 # look at repeatability of neophobia and population difference in neophobia
 #  ---------------------------------------------
-#library("suncalc")
+library("suncalc")
 #install.packages("StreamMetabolism")
 library("StreamMetabolism")
 #
@@ -55,7 +55,8 @@ dataSun <- merge(data,sun,by="dayChar", all.x=F,sort=F)#all.x=F (keep only bird 
 dataSun$timeRise=(chron::times(as.character(dataSun$hour))-dataSun$hourSunrise)*86400
 # time according to sunset
 dataSun$timeSet=(dataSun$hourSunset-chron::times(as.character(dataSun$hour)))*86400
-
+# save
+write.csv2(dataSun,paste0(out_n,"Data_scenario1-2withTimeFromSunrise.csv"))
 
 
 # neophobia variable
@@ -137,16 +138,15 @@ neo$motor2_duration=neo$neo3_arr-neo$neo2
 neo$visual1_duration=neo$neo4_arr-neo$neo3
 neo$visual2_duration=neo$End4-neo$neo4
 
+
 # verify
 # neo$neo1-neo$neo1_arr
 # neo$neo2-neo$neo2_arr
 # neo$neo3-neo$neo3_arr
 # neo$neo4-neo$neo4_arr
 
-# compute ITI by individuals
-#---------------------------
-# TO DO: mean/median iti by day before experiment
-
+# save
+write.csv2(neo,paste0(out_n,"TimelineNeophoia.csv"))
 
 
 #---------------------------------
@@ -181,36 +181,39 @@ for(s in 1:length(uSite)){
 
 # Visit rate pop
 #------------------
-win=seq(from = 5, to = 120, by = 5)
+win=seq(from = 5, to = 30, by = 5)
 # compute before after
 dataList=list()
 n=1
-for (w in 1:length(win)){
-  for(s in 1:length(uSite)){
-    # door mov
-    #--------
-    day_ind=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo$neo1[neo$site==uSite[s]],1,10),'%Y-%m-%d')
-    # day vis
-    day_vis=as.POSIXct(data$fullTime[day_ind],tz="",'%d/%m/%y %H:%M:%OS')
-    # nb visit before
-    before=sum(day_vis>as.POSIXct((neo$neo1_arr[neo$site==uSite[s]]-win[w]*60),tz="",'%d/%m/%y %H:%M:%OS')
-               &day_vis<as.POSIXct(neo$neo1_arr[neo$site==uSite[s]],tz="",'%d/%m/%y %H:%M:%OS'))
-    # nb visit after
-    after=sum(day_vis<as.POSIXct((neo$neo1[neo$site==uSite[s]]+win[w]*60),tz="",'%d/%m/%y %H:%M:%OS')
-              &day_vis>as.POSIXct(neo$neo1[neo$site==uSite[s]],tz="",'%d/%m/%y %H:%M:%OS'))
-    
-    dataList[[n]]=data.frame(site=uSite[s],neo="neo1",wind=win[w],
-                             time="before",nbVisit=before)
-    dataList[[n+1]]=data.frame(site=uSite[s],neo="neo1",wind=win[w],
-                               time="after",nbVisit=after)
-    
-    n=n+2
+neoph=c("neo1","neo2","neo3","neo4")
+for(i in 1:length(neoph)){
+  for (w in 1:length(win)){
+    for(s in 1:length(uSite)){
+      # door mov
+      #--------
+      day_ind=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo[[neoph[i]]][neo$site==uSite[s]],1,10),'%Y-%m-%d')
+      # day vis
+      day_vis=as.POSIXct(data$fullTime[day_ind],tz="",'%d/%m/%y %H:%M:%OS')
+      # nb visit before
+      before=sum(day_vis>as.POSIXct((neo[[paste0(neoph[i],'_arr')]][neo$site==uSite[s]]-(win[w]+30)*60),tz="",'%d/%m/%y %H:%M:%OS')
+                 &day_vis<as.POSIXct(neo[[paste0(neoph[i],'_arr')]][neo$site==uSite[s]]-30*60,tz="",'%d/%m/%y %H:%M:%OS'))
+      # nb visit after
+      after=sum(day_vis<as.POSIXct((neo[[neoph[i]]][neo$site==uSite[s]]+win[w]*60),tz="",'%d/%m/%y %H:%M:%OS')
+                &day_vis>as.POSIXct(neo[[neoph[i]]][neo$site==uSite[s]],tz="",'%d/%m/%y %H:%M:%OS'))
+      
+      dataList[[n]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
+                               time="before",nbVisit=before)
+      dataList[[n+1]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
+                                 time="after",nbVisit=after)
+      
+      n=n+2
+    }
   }
 }
 neoPop=rbindlist(dataList)
 # plot
-ind=neoPop$neo=="neo1"&neoPop$win==30
-boxplot(neoPop$nbVisit[ind]~neoPop$time[ind])
+ind=neoPop$win==10#neoPop$neo=="neo1"&
+boxplot(neoPop$nbVisit[ind]~neoPop$time[ind]*neoPop$site[ind])
 
 
 #---------------------------------
@@ -223,7 +226,7 @@ win=seq(from = 10, to = 240, by = 20)
 # compute before after
 dataList=list()
 n=1
-for (w in 1:length(win)){
+for (w in 1:length(win)){#
   lag=win[w]*60
   print(paste(w,'/',length(win)))
   for(s in 1:length(uSite)){
@@ -247,13 +250,11 @@ for (w in 1:length(win)){
       # baseline same period
       post1=sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
       base1=mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
       # average nb visit on this timewindow
       indDayOfChangeUnique=which(dataSun$dayDate==dayOfChange-1)[1]
       baseAll=as.numeric(mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
-                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
-                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-3)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
+                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
       # store
       dataList[[n]]=data.frame(site=uSite[s],neo="neo1",wind=win[w],tag=uIDpres[i],
                                time="before",nbVisit=before,totalVisitChangeDay=length(day_vis))
@@ -272,7 +273,7 @@ for (w in 1:length(win)){
     print("neo2")
     day_neo=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo$neo2[neo$site==uSite[s]],1,10),'%Y-%m-%d')
     dayOfChange=as.Date(substr(neo$neo2[neo$site==uSite[s]],1,10),'%Y-%m-%d')
-    timeOfChange=neo$neo1SunRise[neo$site==uSite[s]]
+    timeOfChange=neo$neo2SunRise[neo$site==uSite[s]]
     # ind present
     uIDpres=unique(data$tag[day_neo])
     for (i in 1:length(uIDpres)){
@@ -287,23 +288,21 @@ for (w in 1:length(win)){
       # baseline same period
       post1=sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
       base1=mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
       # average nb visit on this timewindow
       indDayOfChangeUnique=which(dataSun$dayDate==dayOfChange-1)[1]
       baseAll=as.numeric(mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
-                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
-                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-3)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
+                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
       # store
-      dataList[[n]]=data.frame(site=uSite[s],neo="neo2",wind=wind[w],tag=uIDpres[i],
+      dataList[[n]]=data.frame(site=uSite[s],neo="neo2",wind=win[w],tag=uIDpres[i],
                                  time="before",nbVisit=before,totalVisitChangeDay=length(day_vis))
-      dataList[[n+1]]=data.frame(site=uSite[s],neo="neo2",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+1]]=data.frame(site=uSite[s],neo="neo2",wind=win[w],tag=uIDpres[i],
                                  time="after",nbVisit=after,totalVisitChangeDay=length(day_vis))
-      dataList[[n+2]]=data.frame(site=uSite[s],neo="neo2",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+2]]=data.frame(site=uSite[s],neo="neo2",wind=win[w],tag=uIDpres[i],
                                  time="baseSameTW",nbVisit=base1,totalVisitChangeDay=length(day_vis))
-      dataList[[n+3]]=data.frame(site=uSite[s],neo="neo2",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+3]]=data.frame(site=uSite[s],neo="neo2",wind=win[w],tag=uIDpres[i],
                                  time="afterSunRise",nbVisit=post1,totalVisitChangeDay=length(day_vis))
-      dataList[[n+4]]=data.frame(site=uSite[s],neo="neo2",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+4]]=data.frame(site=uSite[s],neo="neo2",wind=win[w],tag=uIDpres[i],
                                  time="baseAll",nbVisit=baseAll,totalVisitChangeDay=length(day_vis))
       n=n+5
     }
@@ -312,7 +311,7 @@ for (w in 1:length(win)){
     print("neo3")
     day_neo=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo$neo3[neo$site==uSite[s]],1,10),'%Y-%m-%d')
     dayOfChange=as.Date(substr(neo$neo3[neo$site==uSite[s]],1,10),'%Y-%m-%d')
-    timeOfChange=neo$neo1SunRise[neo$site==uSite[s]]
+    timeOfChange=neo$neo3SunRise[neo$site==uSite[s]]
     # ind present
     uIDpres=unique(data$tag[day_neo])
     for (i in 1:length(uIDpres)){
@@ -327,23 +326,60 @@ for (w in 1:length(win)){
       # baseline same period
       post1=sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
       base1=mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
       # average nb visit on this timewindow
       indDayOfChangeUnique=which(dataSun$dayDate==dayOfChange-1)[1]
       baseAll=as.numeric(mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
-                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
-                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-3)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
+                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
       # store
-      dataList[[n]]=data.frame(site=uSite[s],neo="neo3",wind=wind[w],tag=uIDpres[i],
+      dataList[[n]]=data.frame(site=uSite[s],neo="neo3",wind=win[w],tag=uIDpres[i],
                                  time="before",nbVisit=before,totalVisitChangeDay=length(day_vis))
-      dataList[[n+1]]=data.frame(site=uSite[s],neo="neo3",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+1]]=data.frame(site=uSite[s],neo="neo3",wind=win[w],tag=uIDpres[i],
                                  time="after",nbVisit=after,totalVisitChangeDay=length(day_vis))
-      dataList[[n+2]]=data.frame(site=uSite[s],neo="neo3",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+2]]=data.frame(site=uSite[s],neo="neo3",wind=win[w],tag=uIDpres[i],
                                  time="baseSameTW",nbVisit=base1,totalVisitChangeDay=length(day_vis))
-      dataList[[n+3]]=data.frame(site=uSite[s],neo="neo3",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+3]]=data.frame(site=uSite[s],neo="neo3",wind=win[w],tag=uIDpres[i],
                                  time="afterSunRise",nbVisit=post1,totalVisitChangeDay=length(day_vis))
-      dataList[[n+4]]=data.frame(site=uSite[s],neo="neo3",wind=wind[w],tag=uIDpres[i],
+      dataList[[n+4]]=data.frame(site=uSite[s],neo="neo3",wind=win[w],tag=uIDpres[i],
+                                 time="baseAll",nbVisit=baseAll,totalVisitChangeDay=length(day_vis))
+      
+      n=n+5
+    }
+    # neo4
+    #--------
+    print("neo4")
+    day_neo=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo$neo4[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+    dayOfChange=as.Date(substr(neo$neo4[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+    timeOfChange=neo$neo4SunRise[neo$site==uSite[s]]
+    # ind present
+    uIDpres=unique(data$tag[day_neo])
+    for (i in 1:length(uIDpres)){
+      # day vis
+      day_vis=as.POSIXct(data$fullTime[day_neo&data$tag==uIDpres[i]],tz="",'%d/%m/%y %H:%M:%OS')
+      # nb visit before
+      before=sum(day_vis>as.POSIXct((neo$neo4_arr[neo$site==uSite[s]]-lag),tz="",'%d/%m/%y %H:%M:%OS')
+                 &day_vis<as.POSIXct(neo$neo4_arr[neo$site==uSite[s]],tz="",'%d/%m/%y %H:%M:%OS'))
+      # nb visit after
+      after=sum(day_vis<as.POSIXct((neo$neo4[neo$site==uSite[s]]+lag),tz="",'%d/%m/%y %H:%M:%OS')
+                &day_vis>as.POSIXct(neo$neo4[neo$site==uSite[s]],tz="",'%d/%m/%y %H:%M:%OS'))
+      # baseline same period
+      post1=sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
+      base1=mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+                   sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+      # average nb visit on this timewindow
+      indDayOfChangeUnique=which(dataSun$dayDate==dayOfChange-1)[1]
+      baseAll=as.numeric(mean(c(sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-1)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag,
+                                sum(dataSun$tag==uIDpres[i]&dataSun$dayDate==dayOfChange-2)/((chron::times(dataSun$hourSunset[indDayOfChangeUnique])-chron::times(dataSun$hourSunrise[indDayOfChangeUnique]))*86400)*lag)))
+      # store
+      dataList[[n]]=data.frame(site=uSite[s],neo="neo4",wind=win[w],tag=uIDpres[i],
+                               time="before",nbVisit=before,totalVisitChangeDay=length(day_vis))
+      dataList[[n+1]]=data.frame(site=uSite[s],neo="neo4",wind=win[w],tag=uIDpres[i],
+                                 time="after",nbVisit=after,totalVisitChangeDay=length(day_vis))
+      dataList[[n+2]]=data.frame(site=uSite[s],neo="neo4",wind=win[w],tag=uIDpres[i],
+                                 time="baseSameTW",nbVisit=base1,totalVisitChangeDay=length(day_vis))
+      dataList[[n+3]]=data.frame(site=uSite[s],neo="neo4",wind=win[w],tag=uIDpres[i],
+                                 time="afterSunRise",nbVisit=post1,totalVisitChangeDay=length(day_vis))
+      dataList[[n+4]]=data.frame(site=uSite[s],neo="neo4",wind=win[w],tag=uIDpres[i],
                                  time="baseAll",nbVisit=baseAll,totalVisitChangeDay=length(day_vis))
       
       n=n+5
@@ -356,19 +392,20 @@ for (w in 1:length(win)){
 neoInd=rbindlist(dataList)
 # elevation
 neoInd$elev="Low"
-neoInd$elev[neoIndiv$site %in% c('BA','C4')]="High"
+neoInd$elev[neoInd$site %in% c('BA','C4')]="High"
 # add individual values
 
 # save
-write.csv2(neoInd,paste0(out_n,"Neophobia_visit_240.csv"))
+write.csv2(neoInd,paste0(out_n,"Neophobia_visit.csv"))
 
 
 # plot
-ind=neoInd$neo=="neo1"&neoInd$wind==165
-boxplot(log(neoInd$nbVisit[ind]+1)~neoInd$time[ind])
+ind=neoInd$wind==30
+boxplot(sqrt(neoInd$nbVisit[ind]+1)~neoInd$time[ind])
+hist(neoInd$nbVisit[neoInd$time=="after"&ind]-neoInd$nbVisit[neoInd$time=="before"&ind])
 
 # estim plot
-ind=neoInd$neo=="neo2"&neoInd$wind==5
+ind=neoInd$neo=="neo2"&neoInd$wind==10
 estim<- dabest(neoInd[ind,],time,nbVisit,idx=c("before","after"),
                paired = TRUE,id.column = tag)
 plot(estim)
@@ -377,13 +414,12 @@ sink(paste0(out_n,"SI_est.txt"))# store erros
 print(estim)
 sink()
 
-m1=glmer(nbVisit~time*elev+neo+(1|tag),family=poisson, data=neoInd,subset = neoInd$wind==15&neoInd$time %in% c("before","after"))
+m1=glmer(nbVisit~time*elev+neo+(1|tag),family=poisson, data=neoInd,subset = neoInd$wind==10&neoInd$time %in% c("before","after"))
 summary(m1)
 
 m1=glmer(nbVisit~time+site+wind+(1|tag),family=poisson, data=neoInd)
 
 
-# repeatability
 
 
 # Repeatability visit rate
@@ -449,6 +485,9 @@ for (w in 1:length(win)){
 }
 # merge
 resWind=rbindlist(resW)
+# save
+write.csv2(resWind,paste0(out_n,"Neophobia_visit_repeatability.csv"))
+
 # plot R on all time window
 pdf(paste0(out_n,"Repeatability of number of visit depending on the time window.pdf"))
 ggplot(resWind,aes(wind,R,colour=base))+geom_line()
@@ -460,214 +499,378 @@ ggplot(resWind, aes(wind, R, colour=base, fill=base)) +
   geom_line() +
   geom_ribbon(aes(x=wind, y=R, ymax=lowCI, ymin=highCI), 
               alpha=0.2)
-#store data
-res=data.frame('All')
-names(res)="species"
-res$R=round(rep$R[[1]],2)
-res$lowCI=round(rep$CI_emp[[1]],2)
-res$highCI=round(rep$CI_emp[[2]],2) 
-
-
-## Rep by species
-uSpe=unique(d$species)
-for (s in 1:length(uSpe)){
-  rep=rpt(neo~site+(1|tag), grname = c("tag"), data = neoIndivClean[neoIndivClean$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut) 
-  temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
-  names(temp)=c("species","R","lowCI","highCI")
-  res = rbind(res,temp)
-}
-# Export
-pdf(paste0(out_n,j,"_Neophobia_repeat.pdf"), height=3, width=3)
-grid.table(res,rows =c())
-dev.off()
+# #store data
+# res=data.frame('All')
+# names(res)="species"
+# res$R=round(rep$R[[1]],2)
+# res$lowCI=round(rep$CI_emp[[1]],2)
+# res$highCI=round(rep$CI_emp[[2]],2) 
 
 
 
-for (j in c(120,300,600,900)){
-  lag=j
-  #loop over site
-  n=1
-  datlist=list()
-  for(s in 1:length(uSite)){
-    uTag=unique(data$tag[data$site_folder==uSite[s]])
-    #loop over individuals
-    for (i in 1:length(uTag)){
-      #neo1
-      dayOfChange=as.Date(substr(neo$neo1[neo$site==uSite[s]],1,10),'%Y-%m-%d')
-      timeOfChange=neo$neo1SunRise[neo$site==uSite[s]]
-      post1=sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
-      base1=mean(c(sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
-      #neo2
-      dayOfChange=as.Date(substr(neo$neo2[neo$site==uSite[s]],1,10),'%Y-%m-%d')
-      timeOfChange=neo$neo2SunRise[neo$site==uSite[s]]
-      post2=sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
-      base2=mean(c(sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
-      
-      #neo3
-      dayOfChange=as.Date(substr(neo$neo3[neo$site==uSite[s]],1,10),'%Y-%m-%d')
-      timeOfChange=neo$neo3SunRise[neo$site==uSite[s]]
-      post3=sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
-      base3=mean(c(sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
-                   sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
-      
-      
-      # store
-      #dat=data.frame(site=uSite[s],tag=uTag[i],neo=post1,base1=base1,post2=post2,base2=base2,post3=post3,base3=base3)
-      dat=data.frame(site=rep(uSite[s],3),tag=rep(uTag[i],3),species=rep(unique(dataSun$species[dataSun$tag==uTag[i]]),3),neo=c(post1-base1,post2-base2,post3-base3),base=c(base1,base2,base3),post=c(post1,post2,post3),neoType=c(1,2,3))
-      datlist[[n]]=dat
-      n=n+1
-      print(n)
-    }
-  }
-  #merge
-  neoIndiv=do.call(rbind,datlist)
-  #
-  neoIndiv$elev="Low"
-  neoIndiv$elev[neoIndiv$site %in% c('BA','C4')]="High"
-  
-  # Stats
-  #------
-  m1=lmer(neo~species*elev+neoType+(1|tag), data=neoIndiv,subset = neoIndiv$base>0)
-  
-  sink(paste0(out_n,j,"_Neophobia stats.txt"))
-  print(summary(m1))
-  sink()
-  # Repeatability first visit
-  #---------------------------
-  neoIndivClean=neoIndiv[neoIndiv$base>0,]
-  nboot=10;npermut=10
-  rep=rpt(neo~species+site+neoType+(1|tag), grname = c("tag"), data = neoIndivClean, datatype = "Gaussian",nboot = nboot, npermut = npermut) 
-  
-  #store data
-  res=data.frame('All')
-  names(res)="species"
-  res$R=round(rep$R[[1]],2)
-  res$lowCI=round(rep$CI_emp[[1]],2)
-  res$highCI=round(rep$CI_emp[[2]],2) 
-  
-  ## Rep by species
-  uSpe=unique(d$species)
-  for (s in 1:length(uSpe)){
-    rep=rpt(neo~site+(1|tag), grname = c("tag"), data = neoIndivClean[neoIndivClean$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut) 
-    temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
-    names(temp)=c("species","R","lowCI","highCI")
-    res = rbind(res,temp)
-  }
-  # Export
-  pdf(paste0(out_n,j,"_Neophobia_repeat.pdf"), height=3, width=3)
-  grid.table(res,rows =c())
-  dev.off()
-  
-  # Plot
-  #-----
-  pdf(paste0(out_n,j,"_Neophobia indiv.pdf"), height=10, width=7)
-  par(mfrow=c(2,2),mar=c(5, 8, 4, 2)/2)
-  hist(neoIndivClean$neo,main=round(median(neoIndivClean$neo),2))
-  boxplot(neoIndivClean$neo~neoIndivClean$species)
-  boxplot(neoIndivClean$neo~neoIndivClean$neoType)
-  boxplot(neoIndivClean$neo~neoIndivClean$elev)
-  dev.off()
-  
-  
-}# loop on lag
 
-# latency to come back
+
+
+
+
+# #-------------
+# # Compute ITI
+# #-------------
+# uTag=unique(data$tag)
+# for (i in 1:length(uTag)){
+#   ind=data$tag==uTag[i]
+#   uDay=unique(data$dayDate[ind])
+#   
+#   for (d in 1:length(uDay)){
+#     indD=ind&data$dayDate==uDay[d]
+#     time1<-chron::times(as.character(data$hour[indD]))
+#     time2<-c(chron::times(0),time1)
+#   }
+# }
+# 
+# # remove bird multipe event of the same visit and code full time (and duration, TO DO)
+# #----------------------------------------------------------------------
+# # deal with bird recorded successively on the same visit
+# #on decalle tous les RFID d'un cran
+# Id2<-c("NA",as.character(dt$tag))
+# Id2<-Id2[-length(Id2)] #suppression de la derni?re valeur pour garder la m?me longueur
+# #on decalle tous les temps d'un cran
+# dt$time<-chron::times(as.character(dt$hour))
+# time2<-c(chron::times(0),dt$time)
+# time2<-time2[-length(time2)] #suppression de la derni??re valeur pour garder la m?me longueur
+# #suppression des donnees si RFID identique la ligne precedente ET la difference de temps est inferieure au seuil
+# samevisit=(dt$tag==Id2|dt$tag=='??????????'|Id2=='??????????') & (dt$time-time2)*86400<gap
+# # COMPUTE DURATION HERE
+# # samevisit2=c(NA,samevisit[-length(samevisit)])
+# # samevisit-samevisit2
+# 
+# dt<-dt[!samevisit,]
+
+
+
+
+
+# 
+# ## Rep by species
+# uSpe=unique(d$species)
+# for (s in 1:length(uSpe)){
+#   rep=rpt(neo~site+(1|tag), grname = c("tag"), data = neoIndivClean[neoIndivClean$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut) 
+#   temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
+#   names(temp)=c("species","R","lowCI","highCI")
+#   res = rbind(res,temp)
+# }
+# # Export
+# pdf(paste0(out_n,j,"_Neophobia_repeat.pdf"), height=3, width=3)
+# grid.table(res,rows =c())
+# dev.off()
+# 
+# 
+# 
+# for (j in c(120,300,600,900)){
+#   lag=j
+#   #loop over site
+#   n=1
+#   datlist=list()
+#   for(s in 1:length(uSite)){
+#     uTag=unique(data$tag[data$site_folder==uSite[s]])
+#     #loop over individuals
+#     for (i in 1:length(uTag)){
+#       #neo1
+#       dayOfChange=as.Date(substr(neo$neo1[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+#       timeOfChange=neo$neo1SunRise[neo$site==uSite[s]]
+#       post1=sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
+#       base1=mean(c(sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+#                    sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+#                    sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+#       #neo2
+#       dayOfChange=as.Date(substr(neo$neo2[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+#       timeOfChange=neo$neo2SunRise[neo$site==uSite[s]]
+#       post2=sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
+#       base2=mean(c(sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+#                    sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+#                    sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+#       
+#       #neo3
+#       dayOfChange=as.Date(substr(neo$neo3[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+#       timeOfChange=neo$neo3SunRise[neo$site==uSite[s]]
+#       post3=sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)
+#       base3=mean(c(sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-1&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+#                    sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-2&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag),
+#                    sum(dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-3&dataSun$timeRise>timeOfChange&dataSun$timeRise<timeOfChange+lag)))
+#       
+#       
+#       # store
+#       #dat=data.frame(site=uSite[s],tag=uTag[i],neo=post1,base1=base1,post2=post2,base2=base2,post3=post3,base3=base3)
+#       dat=data.frame(site=rep(uSite[s],3),tag=rep(uTag[i],3),species=rep(unique(dataSun$species[dataSun$tag==uTag[i]]),3),neo=c(post1-base1,post2-base2,post3-base3),base=c(base1,base2,base3),post=c(post1,post2,post3),neoType=c(1,2,3))
+#       datlist[[n]]=dat
+#       n=n+1
+#       print(n)
+#     }
+#   }
+#   #merge
+#   neoIndiv=do.call(rbind,datlist)
+#   #
+#   neoIndiv$elev="Low"
+#   neoIndiv$elev[neoIndiv$site %in% c('BA','C4')]="High"
+#   
+#   # Stats
+#   #------
+#   m1=lmer(neo~species*elev+neoType+(1|tag), data=neoIndiv,subset = neoIndiv$base>0)
+#   
+#   sink(paste0(out_n,j,"_Neophobia stats.txt"))
+#   print(summary(m1))
+#   sink()
+#   # Repeatability first visit
+#   #---------------------------
+#   neoIndivClean=neoIndiv[neoIndiv$base>0,]
+#   nboot=10;npermut=10
+#   rep=rpt(neo~species+site+neoType+(1|tag), grname = c("tag"), data = neoIndivClean, datatype = "Gaussian",nboot = nboot, npermut = npermut) 
+#   
+#   #store data
+#   res=data.frame('All')
+#   names(res)="species"
+#   res$R=round(rep$R[[1]],2)
+#   res$lowCI=round(rep$CI_emp[[1]],2)
+#   res$highCI=round(rep$CI_emp[[2]],2) 
+#   
+#   ## Rep by species
+#   uSpe=unique(d$species)
+#   for (s in 1:length(uSpe)){
+#     rep=rpt(neo~site+(1|tag), grname = c("tag"), data = neoIndivClean[neoIndivClean$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut) 
+#     temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
+#     names(temp)=c("species","R","lowCI","highCI")
+#     res = rbind(res,temp)
+#   }
+#   # Export
+#   pdf(paste0(out_n,j,"_Neophobia_repeat.pdf"), height=3, width=3)
+#   grid.table(res,rows =c())
+#   dev.off()
+#   
+#   # Plot
+#   #-----
+#   pdf(paste0(out_n,j,"_Neophobia indiv.pdf"), height=10, width=7)
+#   par(mfrow=c(2,2),mar=c(5, 8, 4, 2)/2)
+#   hist(neoIndivClean$neo,main=round(median(neoIndivClean$neo),2))
+#   boxplot(neoIndivClean$neo~neoIndivClean$species)
+#   boxplot(neoIndivClean$neo~neoIndivClean$neoType)
+#   boxplot(neoIndivClean$neo~neoIndivClean$elev)
+#   dev.off()
+#   
+#   
+# }# loop on lag
+# 
+# latency to come back 
 #---------------------
-d$fullTime=paste(d$day,d$hour)
-time=strptime(d$fullTime,"%d/%m/%y %H:%M:%S")
+# TO DO
+# CODE NUMBER OF VISIT BEFORE CHANGE
+# CODE average ITI in baseline (before and day before)
+
+time=strptime(data$fullTime,"%d/%m/%y %H:%M:%S")
 #loop over site
 n=1
 datlist=list()
+data$dayFact=as.character(data$dayDate)
 for(s in 1:length(uSite)){
-  uTag=unique(d$tag[d$site_folder==uSite[s]])
+  uTag=unique(data$tag[data$site_folder==uSite[s]])
   #loop over individuals
+  nbVis=c()
+  mITI=c()
+  nbVisB=c()
   for (i in 1:length(uTag)){
     #neo1
-    post1=difftime(min(time[d$tag==uTag[i]&time>neo$neo1[neo$site==uSite[s]]]),neo$neo1[neo$site==uSite[s]],units = "secs")
-    #nbvis1=time[d$tag==uTag[i]&time<neo$neo1[neo$site==uSite[s]]&time>neo$neo1[neo$site==uSite[s]]-3]
+    post1=difftime(min(time[data$tag==uTag[i]&time>neo$neo1[neo$site==uSite[s]]]),neo$neo1[neo$site==uSite[s]],units = "secs")
+    dayOfChange=as.Date(substr(neo$neo1[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+    nbVis[1]=sum(data$tag==uTag[i]&data$dayFact==dayOfChange)
+    # control ITI on 2 previous days
+    meanITI=c()
+    nbVisBase=c()
+    for(d in 1:2){
+      indD1=dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-d
+      time1<-chron::times(as.character(dataSun$hour[indD1]))
+      time2<-c(chron::times(0),time1)
+      time2<-time2[-length(time2)]
+      iti=(time1-time2)*86400
+      meanITI[d]=mean(iti[2:length(iti)])
+      nbVisBase[d]=sum(indD1)
+    }
+    mITI[1]=mean(meanITI)
+    nbVisB[1]=mean(nbVisBase)
+
+    
     #neo2
-    post2=difftime(min(time[d$tag==uTag[i]&time>neo$neo2[neo$site==uSite[s]]]),neo$neo2[neo$site==uSite[s]],units = "secs")
+    post2=difftime(min(time[data$tag==uTag[i]&time>neo$neo2[neo$site==uSite[s]]]),neo$neo2[neo$site==uSite[s]],units = "secs")
+    dayOfChange=as.Date(substr(neo$neo2[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+    nbVis[2]=sum(data$tag==uTag[i]&data$dayFact==dayOfChange)  
+    # control ITI on 2 previous days
+    meanITI=c()
+    nbVisBase=c()
+    for(d in 1:2){
+      indD1=dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-d
+      time1<-chron::times(as.character(dataSun$hour[indD1]))
+      time2<-c(chron::times(0),time1)
+      time2<-time2[-length(time2)]
+      iti=(time1-time2)*86400
+      meanITI[d]=mean(iti[2:length(iti)])
+      nbVisBase[d]=sum(indD1)
+    }
+    mITI[2]=mean(meanITI)
+    nbVisB[2]=mean(nbVisBase)
+    
     #neo3
-    post3=difftime(min(time[d$tag==uTag[i]&time>neo$neo3[neo$site==uSite[s]]]),neo$neo3[neo$site==uSite[s]],units = "secs")
-    # store
-    dat=data.frame(site=rep(uSite[s],3),tag=rep(uTag[i],3),species=rep(unique(dataSun$species[dataSun$tag==uTag[i]]),3),neo=c(post1,post2,post3),neoType=c(1,2,3))
+    post3=difftime(min(time[data$tag==uTag[i]&time>neo$neo3[neo$site==uSite[s]]]),neo$neo3[neo$site==uSite[s]],units = "secs")
+    dayOfChange=as.Date(substr(neo$neo3[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+    nbVis[3]=sum(data$tag==uTag[i]&data$dayFact==dayOfChange)  
+    # control ITI on 2 previous days
+    # control ITI on 2 previous days
+    meanITI=c()
+    nbVisBase=c()
+    for(d in 1:2){
+      indD1=dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-d
+      time1<-chron::times(as.character(dataSun$hour[indD1]))
+      time2<-c(chron::times(0),time1)
+      time2<-time2[-length(time2)]
+      iti=(time1-time2)*86400
+      meanITI[d]=mean(iti[2:length(iti)])
+      nbVisBase[d]=sum(indD1)
+    }
+    mITI[3]=mean(meanITI)
+    nbVisB[3]=mean(nbVisBase)
+    
+    #neo4
+    post4=difftime(min(time[data$tag==uTag[i]&time>neo$neo4[neo$site==uSite[s]]]),neo$neo4[neo$site==uSite[s]],units = "secs")
+    dayOfChange=as.Date(substr(neo$neo4[neo$site==uSite[s]],1,10),'%Y-%m-%d')
+    nbVis[4]=sum(data$tag==uTag[i]&data$dayFact==dayOfChange)  
+    # control ITI on 2 previous days
+    # control ITI on 2 previous days
+    meanITI=c()
+    nbVisBase=c()
+    for(d in 1:2){
+      indD1=dataSun$tag==uTag[i]&dataSun$dayDate==dayOfChange-d
+      time1<-chron::times(as.character(dataSun$hour[indD1]))
+      time2<-c(chron::times(0),time1)
+      time2<-time2[-length(time2)]
+      iti=(time1-time2)*86400
+      meanITI[d]=mean(iti[2:length(iti)])
+      nbVisBase[d]=sum(indD1)
+    }
+    mITI[4]=mean(meanITI)
+    nbVisB[4]=mean(nbVisBase)
+    
+     # store
+    dat=data.frame(site=rep(uSite[s],4),tag=rep(uTag[i],4),
+                   species=rep(unique(dataSun$species[dataSun$tag==uTag[i]]),4),
+                   neo=c(post1,post2,post3,post4),neoType=c(1:4),
+                   nbVisit=nbVis,mITI=mITI,nbVisB=nbVisB)
     datlist[[n]]=dat
     n=n+1
-    print(n)
+    print(paste(n,"on",length(uTag)))
   }
 }
 #merge
 lat=do.call(rbind,datlist)
+# new variable
 lat$neoLog=log(as.numeric(lat$neo))
+lat$ratio=log(as.numeric(lat$neo))/log(as.numeric(lat$mITI))
+lat$mITIlog=log(as.numeric(lat$mITI))
+
+#store
+write.csv2(lat,paste0(out_n,"Neophobia_latency.csv"))
+
+
+
+rep=rpt(mITIlog~species+site+neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3,], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+rep=rpt(nbVisB~species+site+neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3,], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+
 
 # repeatability of latency
-rep=rpt(neoLog~species+site+neoType+(1|tag), grname = c("tag"), data = lat[!is.na(lat$neo)&lat$neo<36000&lat$neoType>1,], datatype = "Gaussian",nboot = nboot, npermut = npermut) 
+rep=rpt(ratio~species+site+neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3,], datatype = "Gaussian",nboot = nboot, npermut = npermut)
 #store data
 res=data.frame('All')
 names(res)="species"
 res$R=round(rep$R[[1]],2)
 res$lowCI=round(rep$CI_emp[[1]],2)
-res$highCI=round(rep$CI_emp[[2]],2) 
+res$highCI=round(rep$CI_emp[[2]],2)
 
 ## Rep by species
-uSpe=unique(d$species)
+uSpe=unique(data$species)
 for (s in 1:length(uSpe)){
-  rep=rpt(neoLog~site+neoType+(1|tag), grname = c("tag"), data = lat[!is.na(lat$neo)&lat$neo<36000&lat$species==uSpe[s]&lat$neoType>1,], datatype = "Gaussian",nboot = nboot, npermut = npermut) 
+  rep=rpt(ratio~neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3&lat$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut)
   temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
   names(temp)=c("species","R","lowCI","highCI")
   res = rbind(res,temp)
 }
 # Export
-pdf(paste0(out_n,"_Neophobia_Latency_LED_repeat.pdf"), height=3, width=3)
+pdf(paste0(out_n,"_Neophobia_Latency_MOTOR_repeat.pdf"), height=3, width=3)
 grid.table(res,rows =c())
 dev.off()
 
 # Stats
 lat$elev="Low"
-lat$elev[neoIndiv$site %in% c('BA','C4')]="High"
+lat$elev[lat$site %in% c('BA','C4')]="High"
 
-m1=lmer(neoLog~species*elev+neoType+(1|tag), data=lat,subset = !is.na(lat$neo)&lat$neo<36000&lat$neoType>1)
+m1=lmer(neoLog~species*elev+neoType+(1|tag), data=lat,subset = !is.na(lat$neo))
 summary(m1)
 
 # Plot
 pdf(paste0(out_n,"Neophobia indiv latency.pdf"), height=5, width=15)
 par(mfrow=c(1,3),mar=c(5, 8, 4, 2)/2)
-hist(as.numeric(lat$neo[!is.na(lat$neo)&lat$neo<36000&lat$neoType>1]),breaks=100,main="")
+hist(as.numeric(lat$neo[!is.na(lat$neo)&lat$neo<36000&lat$neoType>2]),breaks=100,main="")
 boxplot(lat$neoLog[!is.na(lat$neo)&lat$neo<36000&lat$neoType>1]~lat$elev[!is.na(lat$neo)&lat$neo<36000&lat$neoType>1])
-boxplot(lat$neoLog[!is.na(lat$neo)&lat$neo<36000&lat$neoType>1]~lat$neoType[!is.na(lat$neo)&lat$neo<36000&lat$neoType>1])
+boxplot(lat$neoLog[!is.na(lat$neo)]~lat$neoType[!is.na(lat$neo)])
 dev.off()
-# Raster plot before and after change
-#-------------------------------------
-
-uTag=unique(dataSun$tag)
-for (i in 1:length(uTag))
-{
-  ind=which(dataSun$tag==uTag[i])
-  if (length(ind)>100){# at least a 100 visit
-    name=paste(unique(dataSun$species[ind]),unique(dataSun$site_folder[ind]))
-    pdf(paste0(out_r,"Neophobia",name,' ',uTag[i],".pdf"), height=5, width=7)
-    
-    barcode(split(dataSun$timeSet[ind]/3600, dataSun$dayDate[ind]),main=name)
-    dev.off()
-  }
-  print(paste(i,'/',length(uTag)))
-}
 
 
+# # Raster plot before and after change
+# #-------------------------------------
+# 
+# uTag=unique(dataSun$tag)
+# for (i in 1:length(uTag))
+# {
+#   ind=which(dataSun$tag==uTag[i])
+#   if (length(ind)>100){# at least a 100 visit
+#     name=paste(unique(dataSun$species[ind]),unique(dataSun$site_folder[ind]))
+#     pdf(paste0(out_r,"Neophobia",name,' ',uTag[i],".pdf"), height=5, width=7)
+#     
+#     barcode(split(dataSun$timeSet[ind]/3600, dataSun$dayDate[ind]),main=name)
+#     dev.off()
+#   }
+#   print(paste(i,'/',length(uTag)))
+# }
+# 
+# 
+# 
+# 
+# 
+# d$fullTime=paste(d$day,d$hour)
+# time=strptime(d$fullTime,"%d/%m/%y %H:%M:%S")
+# 
+# # Daily visit rate
+# #------------------
+# DT <- as.data.table(dataSun)
+# DT=DT[,list(nbtrial = .N,species=unique(species),sex=unique(sex),age=unique(age),site=unique(site_folder),site=unique()), by="day,site_folder,scenario,tag"]
+# dt=as.data.frame(DT)
+# dt$dayDate=as.Date(dt$day,"%d/%m/%y")
+
+#---------------------------------------
+# Plot and Stats for Openfeeder Article
+#---------------------------------------
+# load neophobia variables
+#-------------------------
+out_n="/Users/maximecauchoix/Documents/wild_cog_OF/results/2018-2019/Neophobia/"
+# data
+dataSun=read.csv2(out_n,"Data_scenario1-2withTimeFromSunrise.csv")
+# timeline
+neo=read.csv2(paste0(out_n,"TimelineNeophoia.csv"))
+
+# visit
+neoInd=read.csv2(paste0(out_n,"Neophobia_visit.csv"))
+resWind=read.csv2(paste0(out_n,"Neophobia_visit_repeatability.csv"))
+# latency
+lat=read.csv2(paste0(out_n,"Neophobia_latency.csv"))
 
 
 
-d$fullTime=paste(d$day,d$hour)
-time=strptime(d$fullTime,"%d/%m/%y %H:%M:%S")
-
-# Daily visit rate
-#------------------
-DT <- as.data.table(dataSun)
-DT=DT[,list(nbtrial = .N,species=unique(species),sex=unique(sex),age=unique(age),site=unique(site_folder),site=unique()), by="day,site_folder,scenario,tag"]
-dt=as.data.frame(DT)
-dt$dayDate=as.Date(dt$day,"%d/%m/%y")
+# plot
+ind=neoInd$wind==30
+boxplot(sqrt(neoInd$nbVisit[ind]+1)~neoInd$time[ind])
+hist(neoInd$nbVisit[neoInd$time=="after"&ind]-neoInd$nbVisit[neoInd$time=="before"&ind])
