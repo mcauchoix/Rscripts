@@ -1,5 +1,5 @@
 ---
-title: "Neophobia in 2018-2019"
+title: "Neophobia in 2018-2019 for Openfeeder article"
 author: "Maxime Cauchoix"
 date: "5/27/2020"
 output: html_document
