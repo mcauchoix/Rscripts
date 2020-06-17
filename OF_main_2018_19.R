@@ -16,6 +16,7 @@ library("ggplot2")
 library("dabestr")
 library("GGally")
 library("ggforce")# sina plot
+library(sjPlot)
 # to read excel file
 # library('rJava')
 # library('xlsxjars')
