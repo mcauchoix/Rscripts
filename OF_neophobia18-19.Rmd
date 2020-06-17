@@ -42,9 +42,16 @@ For each analysis, we would like to control for elevation and species and evalua
 ```{r load, echo=FALSE}
 d=read.table('/Users/maximecauchoix/Documents/openfeeder/data/StudySite_2018_19.csv',h=T)
 head(d)
+### Only keep
 
 ```
 ## Load timeline 
+ec=read.csv2('/Users/maximecauchoix/Documents/wild_cog_OF/logistique/OF timeline.csv')
+ec=ec[,1:7]
+ec$dayDate=as.Date(ec$Day,"%d/%m/%y")# convert date
+head(ec)
+
+#3- Compute 
 
 
 
