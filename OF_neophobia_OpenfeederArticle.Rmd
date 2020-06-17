@@ -1,0 +1,313 @@
+---
+title: "Neophobia in 2018-2019 for Openfeeder article"
+author: "Maxime Cauchoix"
+date: "6/01/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning = FALSE,message = FALSE)
+```
+#---------------------------------------
+#1- Protocole
+#---------------------------------------
+There are 4 different scenari in the protocol that could be used to assess neophobia:  
+- 2 motor only: Door close 25% and Door close 100%   
+- 2 visual only: GREEN LEDS ON and RED LEDS ON  
+Birds are used to feed from a hole fully hopen during 10 days (Openbar). In the Door close 25% senario, the hole is allways 25% closed by the door and as soon as a bird perch on the antenna and his PITtag is recognised the door move to give a full access to the hole. In the senario Door close 100% the task is similar except that the hole is now totaly closed by the door before a bird perch on the antenna. During the visual only neophobia task we assume that birds are now used to door movement after 15 days of Door 100% and we use the 4 LEDS placed arround the feeding hole to produce a different kinds of neophobic signal. For 3 days the 4 LEDS are constantly switch on in GREEN and then in RED for a consecutive period of 3 days.
+
+### Figure 1: Experimental protocole 
+![](Protocole_neophobia.jpg)
+
+#---------------------------------------
+# 2- Full Analysis plan
+#---------------------------------------
+We first want to see if neophobic stimuli change bird behaviour at the population level:  
+- is the number of birds present at the feeder changed by neophobic stimuli? 
+- is the delay between neophobic stimuli onset and first visit (time2return) longer than average inter trial interval (meanITI)?  
+- is the daily/hourly visit rate modified by the neophobic stimuli?  
+
+We then would like to estimate neophobia at the inidividual level:  
+- is the delay between neophobic stimuli onset and first visit (time2return_ID) longer than average inter trial interval (meanITI_ID) at the individual level?  
+- is the daily/hourly visit rate modified by the neophobic stimuli at the individual level?  
+- are those neophobic repeabtle between all task and within task modality (visual/motor)?  
+
+For each analysis, we would like to control for elevation and species and evaluate both the effect of the baseline and neophobic time window used.
+
+
+
+#---------------------------------------
+# Plot and Stats for Openfeeder Article
+#---------------------------------------
+# load neophobia variables
+#-------------------------
+Load all table precomputed in OF_neophobia.R
+It includes:  
+- dataSun: all data for scenario 1 and 2 with time computed according to sun rise or sun set  
+- neo: this gives the date and hour (ONEST) of the 4 neophobia change  
+- neoInd: visit rate variable computed on 12 time widow=seq(from = 10, to = 240, by = 20)   
+after (after task ONSET), before (before experimentator arrive to perform the change), baseSameTW (on a baseline in the sametimewidow and same period of the say on the 2 days before), baseAll (on average form the samelength TW on the 2 days before)  
+- resWind: repeatability results computed all TW for all species confounded   rep=rpt(nbVisit~site+neo+(1|tag), grname = c("tag"), data = neoIndivClean, datatype = "Gaussian",nboot = nboot, npermut = npermut), CAN NOT BE USED FOR PUBLICATION, NEED TO CONTROL FOR SPECIES AND LOG TRANSFROM OR USE A POISSON DISTRIB AND CHECK RESIDUALS  
+-lat: latency to come back after neophobia task ONSET (neo), mean ITI (mITI) on the 2 days before, nb visit the day of change (nbVisit) and on average in the 2 previous days (nbVisB)  
+
+```{r package, echo=FALSE,warning = FALSE,message = FALSE}
+rm(list = ls())
+# library
+#--------
+# for plots
+library("ggplot2")
+library("dabestr")
+#library("GGally")
+#library("ggforce")# sina plot
+library(sjPlot)
+# to read excel file
+# library('rJava')
+# library('xlsxjars')
+# library('xlsx')
+# export table
+library("gridExtra")
+# manipulate data
+library("data.table")
+library('chron') #for temporal data
+# stats
+library("lme4")
+library("lmerTest") # 
+library("rptR")# repeatability computation
+#library("MuMIn")
+#library("corrplot")
+library("DHARMa")
+#library("gam")
+# for Gamm
+#library("gamm4")
+#library(mgcv)
+# other
+```
+
+```{r load, echo=FALSE}
+# Folder with data
+out_n="/Users/maximecauchoix/Documents/wild_cog_OF/results/2018-2019/Neophobia/"
+## data
+dataSun=read.csv2(paste0(out_n,"Data_scenario1-2withTimeFromSunrise.csv"))
+## timeline
+neo=read.csv2(paste0(out_n,"TimelineNeophoia.csv"))
+## visit
+neoInd=read.csv2(paste0(out_n,"Neophobia_visit.csv"))
+resWind=read.csv2(paste0(out_n,"Neophobia_visit_repeatability.csv"))
+## latency
+lat=read.csv2(paste0(out_n,"Neophobia_latency.csv"))
+
+
+# Add species to visit data
+spe=dataSun[!duplicated(dataSun$tag),c("tag","species")]
+v=merge(neoInd,spe,by="tag",all.x=T)
+v$species=factor(v$species)
+
+```
+#-----------
+# Visit rate
+#-----------
+
+## Distribution of after - baseline on 30s time window
+```{r plot}
+win=10
+v1=v[v$wind==win&v$time=='after'&v$totalVisitChangeDay>0&v$neo=="neo1",]
+v1b=v[v$wind==win&v$time=='before'&v$totalVisitChangeDay>0&v$neo=="neo1",]
+v1$diff=v1b$nbVisit-v1$nbVisit
+v1$base=v1b$nbVisit
+
+v2=v[v$wind==win&v$time=='after'&v$totalVisitChangeDay>0&v$neo=="neo2",]
+v2b=v[v$wind==win&v$time=='before'&v$totalVisitChangeDay>0&v$neo=="neo2",]
+v2$diff=v2b$nbVisit-v2$nbVisit
+v2$base=v2b$nbVisit
+
+v3=v[v$wind==win&v$time=='after'&v$totalVisitChangeDay>0&v$neo=="neo3",]
+v3b=v[v$wind==win&v$time=='before'&v$totalVisitChangeDay>0&v$neo=="neo3",]
+v3$diff=v3b$nbVisit-v3$nbVisit
+v3$base=v3b$nbVisit
+
+v4=v[v$wind==win&v$time=='after'&v$totalVisitChangeDay>0&v$neo=="neo4",]
+v4b=v[v$wind==win&v$time=='before'&v$totalVisitChangeDay>0&v$neo=="neo4",]
+v4$diff=v4b$nbVisit-v4$nbVisit
+v4$base=v4b$nbVisit
+
+vB=rbind(v1,v2,v3,v4)
+
+#vB$diff=v$nbVisit[v$wind==win&v$time=='before'&v$totalVisitChangeDay>0]-vB$nbVisit
+# plot differenc
+ggplot(vB,aes(diff,colour=species))+geom_freqpoly(bins=30)
+
+# plot nbvisit
+ggplot(v[v$wind==70,],aes(nbVisit,colour=time))+geom_freqpoly(bins=20)
+
+# estim plot
+# estim plot
+# ind=v$neo=="neo1"&v$wind==10&v$totalVisitChangeDay>0&v$species=="Great"
+# estim<- dabest(v[ind,],time,nbVisit,idx=c("before","after"),
+#                paired = TRUE,id.column = tag)
+# 
+# estim<- dabest(v[ind,],time,nbVisit,idx=c("before","after"),
+#                paired = TRUE,id.column = tag)
+# estim
+# plot(estim)
+
+
+
+
+```
+## STATS
+```{r stats}
+v$nbVisit=round(v$nbVisit)# to use poisson
+
+# loop over time 
+windows=unique(v$wind)
+p=c()
+est=c()
+for (i in 1:length(windows)){
+  m1=glmer(nbVisit~time+species+neo+(1|site/tag),family=poisson, data=v,subset = v$wind==windows[i]&v$time %in% c("after","before"))
+res=summary(m1)
+est[i]=res$coefficients[2,1]
+p[i]=res$coefficients[2,4]
+}
+plot(windows,p)
+abline(h=0.05)
+
+# final model
+m1=glmer(nbVisit~time+species+neo+(1|site/tag),family=poisson, data=v,subset = v$wind==win&v$time %in% c("after","before"))
+tab_model(m1,show.stat=T,show.est=T)#file=paste0(out_n,"ModelSummary_nbVisit_baseAll_30.html")
+#hist(residuals(m1))
+plot_model(m1,type="pred")
+
+# plot effect
+```
+
+## Repeatability
+### Motor
+###-------
+```{r repeat motor}
+nboot = 10; npermut = 10
+
+rep=rpt(diff~site+species+neo+(1|tag), grname = c("tag"), data = vB[vB$neo %in% c("neo1","neo2"),], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+
+res=data.frame('All')
+names(res)="species"
+res$R=round(rep$R[[1]],2)
+res$lowCI=round(rep$CI_emp[[1]],2)
+res$highCI=round(rep$CI_emp[[2]],2)
+
+## Rep by species
+uSpe=unique(vB$species)
+for (s in 1:length(uSpe)){
+  rep=rpt(diff~site+neo+(1|tag), grname = c("tag"), data = vB[vB$neo %in% c("neo1","neo2")&vB$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+  temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
+  names(temp)=c("species","R","lowCI","highCI")
+  res = rbind(res,temp)
+  
+}
+print("motor")
+res
+# Export
+pdf(paste0(out_n,"_Neophobia_VisitRate_MOTOR_repeat.pdf"), height=3, width=3)
+grid.table(res,rows =c())
+dev.off()
+```
+
+### Visual
+###-------
+```{r repeat visual}
+
+rep=rpt(diff~site+species+neo+(1|tag), grname = c("tag"), data = vB[vB$neo %in% c("neo3","neo4"),], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+
+res=data.frame('All')
+names(res)="species"
+res$R=round(rep$R[[1]],2)
+res$lowCI=round(rep$CI_emp[[1]],2)
+res$highCI=round(rep$CI_emp[[2]],2)
+
+## Rep by species
+for (s in 1:length(uSpe)){
+  rep=rpt(diff~site+neo+(1|tag), grname = c("tag"), data = vB[vB$neo %in% c("neo3","neo4")&vB$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+  temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
+  names(temp)=c("species","R","lowCI","highCI")
+  res = rbind(res,temp)
+  
+}
+print("visual")
+res
+# Export
+pdf(paste0(out_n,"_Neophobia_VisitRate_visual_repeat.pdf"), height=3, width=3)
+grid.table(res,rows =c())
+dev.off()
+```
+#--------
+# Latency
+#--------
+Plot ratio of log(time to return)/log(baseline average ITI)
+```{r ratio plot}
+ggplot(lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3,],aes(ratio,colour=species))+
+geom_freqpoly(bins=30)
+
+```
+```{r stats latency}
+# latTemp=lat[lat$nbVisit>0&lat$nbVisB>0,c("site","tag","species","mITIlog")]
+# names(latTemp)=c("site","tag","species","neoLog")
+# latAll=rbind(lat[lat$nbVisit>0&lat$nbVisB>0,c("site","tag","species","neoLog")],
+#              latTemp)
+lat$neoMod[lat$neoType<3]="Motor"
+lat$neoMod[lat$neoType>2]="Visual"
+m1=glmer(ratio~species+neoMod+nbVisit+mITI+(1|site/tag),family=gaussian, data=lat,subset =lat$nbVisit>0&lat$nbVisB>0)
+tab_model(m1,show.stat=T,show.est=T)
+plot_model(m1)
+
+```
+
+
+## Repeatability
+### Motor
+```{r repeat motor latency}
+# repeatability of latency
+rep=rpt(ratio~species+site+neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3,], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+#store data
+res=data.frame('All')
+names(res)="species"
+res$R=round(rep$R[[1]],2)
+res$lowCI=round(rep$CI_emp[[1]],2)
+res$highCI=round(rep$CI_emp[[2]],2)
+
+## Rep by species
+uSpe=unique(lat$species)
+for (s in 1:length(uSpe)){
+  rep=rpt(ratio~neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType<3&lat$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+  temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
+  names(temp)=c("species","R","lowCI","highCI")
+  res = rbind(res,temp)
+}
+res
+# Export
+pdf(paste0(out_n,"_Neophobia_Latency_MOTOR_repeat.pdf"), height=3, width=3)
+grid.table(res,rows =c())
+dev.off()
+```
+### Visual
+```{r repeat visual latency}
+# repeatability of latency
+rep=rpt(ratio~species+site+neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType>2,], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+#store data
+res=data.frame('All')
+names(res)="species"
+res$R=round(rep$R[[1]],2)
+res$lowCI=round(rep$CI_emp[[1]],2)
+res$highCI=round(rep$CI_emp[[2]],2)
+
+## Rep by species
+for (s in 1:length(uSpe)){
+  rep=rpt(ratio~neoType+(1|tag), grname = c("tag"), data = lat[lat$nbVisit>0&lat$nbVisB>0&lat$neoType>2&lat$species==uSpe[s],], datatype = "Gaussian",nboot = nboot, npermut = npermut)
+  temp=data.frame(uSpe[s],round(rep$R[[1]],2),round(rep$CI_emp[[1]],2),round(rep$CI_emp[[2]],2))
+  names(temp)=c("species","R","lowCI","highCI")
+  res = rbind(res,temp)
+}
+res
+# Export
+pdf(paste0(out_n,"_Neophobia_Latency_VISUAL_repeat.pdf"), height=3, width=3)
+grid.table(res,rows =c())
+dev.off()
+```
