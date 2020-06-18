@@ -181,17 +181,25 @@ for(s in 1:length(uSite)){
 
 # Visit rate pop
 #------------------
-win=seq(from = 5, to = 30, by = 5)
+# increasing window
+win=seq(from = 5, to = 120, by = 5)
 # compute before after
 dataList=list()
 n=1
 neoph=c("neo1","neo2","neo3","neo4")
+uSpe=unique(data$species)
+
 for(i in 1:length(neoph)){
+  print(neoph[i])
   for (w in 1:length(win)){
     for(s in 1:length(uSite)){
+      for (spe in 1:length(uSpe)){
+        
       # door mov
       #--------
-      day_ind=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo[[neoph[i]]][neo$site==uSite[s]],1,10),'%Y-%m-%d')
+      day_ind=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo[[neoph[i]]][neo$site==uSite[s]],1,10),'%Y-%m-%d')&
+        data$species==uSpe[spe]
+        
       # day vis
       day_vis=as.POSIXct(data$fullTime[day_ind],tz="",'%d/%m/%y %H:%M:%OS')
       # nb visit before
@@ -202,20 +210,178 @@ for(i in 1:length(neoph)){
                 &day_vis>as.POSIXct(neo[[neoph[i]]][neo$site==uSite[s]],tz="",'%d/%m/%y %H:%M:%OS'))
       
       dataList[[n]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
-                               time="before",nbVisit=before)
+                               time="before",species=uSpe[spe],nbVisit=before)
       dataList[[n+1]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
-                                 time="after",nbVisit=after)
+                                 time="after",species=uSpe[spe],nbVisit=after)
+      dataList[[n+2]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
+                                 time="diff",species=uSpe[spe],nbVisit=after-before)
       
-      n=n+2
+      n=n+3
     }
   }
+  }
 }
+
 neoPop=rbindlist(dataList)
+
 # plot
-ind=neoPop$win==10#neoPop$neo=="neo1"&
-boxplot(neoPop$nbVisit[ind]~neoPop$time[ind]*neoPop$site[ind])
+pdf(paste(out_n,'population_5.pdf'),width = 7, height=4)
+small=ggplot(neoPop[neoPop$win==5&neoPop$time %in% c("before","after"),],aes(y=nbVisit, x=species, colour=time))+
+  geom_sina(size=0.7)+
+  #geom_point(position=position_jitterdodge(dodge.width=0.7), size=1) +
+  scale_color_manual(values=c("black","grey"))+
+  geom_boxplot(alpha=0.5, position = position_dodge(width=0.8),outlier.alpha=0)+
+  ylab("Number of visit")+
+  xlab("")+ggtitle("5 min time window")+
+  #scale_x_discrete(breaks=c("1","2","30","31"),labels=c("Openbar", "Door habituation", "ON/OFF learning","Left/Right learning"))+
+  theme_classic()
+dev.off()
 
 
+pdf(paste(out_n,'population_120.pdf'),width = 7, height=4)
+large=ggplot(neoPop[neoPop$win==120&neoPop$time %in% c("before","after"),],aes(y=nbVisit, x=species, colour=time))+
+  geom_sina(size=0.7)+
+  #geom_point(position=position_jitterdodge(dodge.width=0.7), size=1) +
+  scale_color_manual(values=c("black","grey"))+
+  geom_boxplot(alpha=0.5, position = position_dodge(width=0.8),outlier.alpha=0)+
+  ylab("Number of visit")+
+  xlab("")+
+  ggtitle("120 min time window")+
+  #scale_x_discrete(breaks=c("1","2","30","31"),labels=c("Openbar", "Door habituation", "ON/OFF learning","Left/Right learning"))+
+  theme_classic()
+dev.off()
+
+#
+DT <- as.data.table(neoPop)
+DT=DT[time=="diff",list(cohen = mean(nbVisit)/sd(nbVisit)), by="wind,species"]# pre process again to avoid days with 2 scenario
+dv=as.data.frame(DT)
+cohen=ggplot(dv,aes(y=cohen, x=wind, colour=species))+
+  annotate("rect", xmin = 0, xmax = 125, ymin = -1.3, ymax =-1.2,
+           alpha = 1)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = 1.2, ymax =1.3,
+           alpha = 1)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = -1.2, ymax =-0.8,
+           alpha = .8)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = 0.8, ymax =1.2,
+           alpha = .8)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = -0.8, ymax =-0.5,
+           alpha = .5)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = 0.5, ymax =0.8,
+           alpha = .5)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = -0.5, ymax =-0.2,
+           alpha = .2)+
+  annotate("rect", xmin = 0, xmax = 125, ymin = 0.2, ymax =0.5,
+           alpha = .2)+
+  geom_line()+
+  geom_point()+
+  scale_color_manual(values=c("blue","gold","brown"))+
+  geom_hline(yintercept=0, linetype="dashed", color = "black")+
+  ylab("Cohen's d")+
+  xlab("Time window (Min)")+
+  theme_classic()
+
+# align y axis
+small <- ggplotGrob(small)
+large <- ggplotGrob(large)
+cohen <- ggplotGrob(cohen)
+
+# save plot
+pdf(paste(out_n,'population_all.pdf'),width = 4, height=9)
+grid::grid.newpage()
+grid::grid.draw(rbind(small, large, cohen))
+dev.off()
+
+# stats
+p=c()
+est=c()
+for (i in 1:(length(win)-1)){
+  m1=glmer(nbVisit~time+species+neo+(1|site),family=poisson, data=neoPop,subset = neoPop$wind==win[i])
+  res=summary(m1)
+  est[i]=res$coefficients[2,1]
+  p[i]=res$coefficients[2,4]
+}
+# SI p value and estimates according to time window
+pdf(paste0(out_n,"Population_effect.pdf"), height=10, width=5)
+par(mfrow=c(2,1),mar=c(8, 8, 4, 2)/2)
+plot(win[1:length(win)-1],p,xlab="",ylab="p value")
+abline(h=0.05)
+plot(win[1:length(win)-1],est,xlab="Time window (min)",ylab="estimate")
+abline(h=0)
+dev.off()
+# Final models
+m1=glmer(nbVisit~time*species+neo+(1|site),family=poisson, data=neoPop,subset = neoPop$wind==10)
+mtime=glmer(nbVisit~species+neo+(1|site),family=poisson, data=neoPop,subset = neoPop$wind==10)
+mspecies=glmer(nbVisit~time+neo+(1|site),family=poisson, data=neoPop,subset = neoPop$wind==10)
+mneo=glmer(nbVisit~time+species+(1|site),family=poisson, data=neoPop,subset = neoPop$wind==10)
+
+# plot model
+tab_model(m1,show.stat=T,show.est=T)#file=paste0(out_n,"ModelSummary_nbVisit_baseAll_30.html")
+#hist(residuals(m1))
+plot_model(m1)
+plot_model(m1,type = "int")
+plot_model(m1,type="pred",terms="time")
+plot_model(m1,type="pred",terms="species")
+plot_model(m1,type="pred",terms="neo")
+
+
+
+
+# # sliding window
+# win=seq(from = 0, to = 180, by = 5)
+# # compute before after
+# dataList=list()
+# n=1
+# neoph=c("neo1","neo2","neo3","neo4")
+# uSpe=unique(data$species)
+# for(i in 1:length(neoph)){
+#   for (w in 1:(length(win)-1)){
+#     for(s in 1:length(uSite)){
+#       # door mov
+#       #--------
+#       day_ind=data$site_folder==uSite[s]&data$dayDate==as.Date(substr(neo[[neoph[i]]][neo$site==uSite[s]],1,10),'%Y-%m-%d')
+#       # day vis
+#       day_vis=as.POSIXct(data$fullTime[day_ind],tz="",'%d/%m/%y %H:%M:%OS')
+#       # nb visit before
+#       before=sum(day_vis>as.POSIXct((neo[[paste0(neoph[i],'_arr')]][neo$site==uSite[s]]-(5+30)*60),tz="",'%d/%m/%y %H:%M:%OS')
+#                  &day_vis<as.POSIXct(neo[[paste0(neoph[i],'_arr')]][neo$site==uSite[s]]-30*60,tz="",'%d/%m/%y %H:%M:%OS'))
+#       # nb visit after
+#       after=sum(day_vis<as.POSIXct((neo[[neoph[i]]][neo$site==uSite[s]]+win[w+1]*60),tz="",'%d/%m/%y %H:%M:%OS')
+#                 &day_vis>as.POSIXct(neo[[neoph[i]]][neo$site==uSite[s]]+win[w]*60,tz="",'%d/%m/%y %H:%M:%OS'))
+#       
+#       dataList[[n]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
+#                                time="before",nbVisit=before)
+#       dataList[[n+1]]=data.frame(site=uSite[s],neo=neoph[i],wind=win[w],
+#                                  time="after",nbVisit=after)
+#       
+#       n=n+2
+#     }
+#   }
+# }
+# 
+# 
+# neoPop=rbindlist(dataList)
+# # plot
+# ind=neoPop$win==120#neoPop$neo=="neo1"&
+# boxplot(neoPop$nbVisit[ind]~neoPop$time[ind]*neoPop$site[ind])
+# boxplot(neoPop$nbVisit~neoPop$time*neoPop$wind)
+# # stats
+# 
+# p=c()
+# est=c()
+# for (i in 1:(length(win)-1)){
+#   m1=glm(nbVisit~time+neo+site,family=poisson, data=neoPop,subset = neoPop$wind==win[i])
+#   res=summary(m1)
+#   est[i]=res$coefficients[2,1]
+#   p[i]=res$coefficients[2,4]
+# }
+# par(mfrow=c(2,1),mar=c(5, 4, 4, 2)/2)
+# plot(win[1:length(win)-1],p)
+# abline(h=0.05)
+# plot(win[1:length(win)-1],est)
+# abline(h=0)
+tab_model(m1,show.stat=T,show.est=T)#file=paste0(out_n,"ModelSummary_nbVisit_baseAll_30.html")
+#hist(residuals(m1))
+plot_model(m1,type="pred",terms="time")
 #---------------------------------
 # Neophobia at the individual level
 #----------------------------------
